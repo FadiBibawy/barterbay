@@ -1,0 +1,22 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+
+<h1><%= @user.email %></h1>
+
+<p><% @user.products.each do |product|%></p>
+  <%= product.title %>
+<p><% end %></p>
+<% if @user == current_user %>
+  <%= link_to 'Edit Profile', edit_user_registration_path %>
+<% end %>
+
+
+
+<p><strong>Reviews</strong></p>
+<ul class="list-group">
+  <% @user.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+  <% end %>
+</ul>
+<br>

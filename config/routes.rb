@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  # get 'reviews/new'
   # get 'products/index'
   devise_for :users
 
   devise_scope :user do
-    resources :users, only: [] do
-      resources :reviews, only: [:new]
+    resources :users, only: [:show] do
+      resources :reviews, only: [:new, :create]
     end
   end
 
