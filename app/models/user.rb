@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   has_many :products
   has_many :offers
+
+  has_many :reviews, foreign_key: :reviewer_id, dependent: :destroy
+  has_many :rated_reviews, class_name: "Review", foreign_key: :rated_user_id, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
