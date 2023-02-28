@@ -8,3 +8,46 @@
   </div>
 <% end %>
 </div>
+
+<%# Code to display the product details and its images in a carousel %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%# Display the first photo in the array %>
+      <%= image_tag @product.photos.first.url, class: "img-fluid mb-4" if @product.photos.present? %>
+      <%# Display the product information %>
+      <h1><%= @product.title %></h1>
+      <h4><%= @product.category %></h4>
+      <p><%= @product.description %></p>
+      <p><strong>Quality:</strong> <%= @product.quality %></p>
+    </div>
+    <%# Display the remaining photos in a carousel %>
+    <% if @product.photos.size > 1 %>
+      <div class="col-md-6">
+        <div id="productCarousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <% @product.photos.each_with_index do |photo, index| %>
+              <li data-target="#productCarousel" data-slide-to="<%= index %>" <%= "class='active'" if index == 0 %>></li>
+            <% end %>
+          </ol>
+          <div class="carousel-inner">
+            <% @product.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= "active" if index == 0 %>">
+                <%= image_tag photo.url, class: "d-block w-100" %>
+              </div>
+            <% end %>
+          </div>
+          <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
