@@ -1,0 +1,13 @@
+<div class="container">
+  <h3>Upload a new Product</h3>
+    <%= simple_form_for @product do |f| %>
+    <%= f.input :title, placeholder: "Title" %>
+    <%= f.input :description, placeholder: "Describe your product" %>
+    <%= f.input :category, placeholder: "Category" %>
+    <%= f.input :quality, placeholder: "Quality" %>
+
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+
+    <%= f.submit%>
+  <% end %>
+</div>
