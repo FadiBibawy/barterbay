@@ -1,12 +1,13 @@
 <div class="container">
   <%= @product.title %>
+  <p>Offered by: <%= @product.user.username %></p>
   <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
 
   <div>
     <% @product.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill %>
+      <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill %>
+    <% end %>
   </div>
-<% end %>
 </div>
 
 <%# Code to display the product details and its images in a carousel %>
