@@ -5,11 +5,11 @@
   <p>Find me in app/views/users/show.html.erb</p>
 
 
-  <h1><%= @user.email %></h1>
+  <h1><%= @user.name %></h1>
 
 
     <% if @user.products.blank? %>
-      <%= @user.email %> has no products!
+      <%= @user.username %> has no products!
     <% else %>
     <p><strong>Products:</strong></p>
       <p><% @user.products.each do |product|%></p>
