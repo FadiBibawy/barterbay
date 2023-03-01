@@ -1,22 +1,49 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
 
 
-<h1><%= @user.email %></h1>
-
-<p><% @user.products.each do |product|%></p>
-  <%= product.title %>
-<p><% end %></p>
-<% if @user == current_user %>
-  <%= link_to 'Edit Profile', edit_user_registration_path %>
-<% end %>
+  <h1>Users#show</h1>
+  <p>Find me in app/views/users/show.html.erb</p>
 
 
+  <h1><%= @user.email %></h1>
 
-<p><strong>Reviews</strong></p>
-<ul class="list-group">
-  <% @user.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-  <% end %>
-</ul>
-<br>
+
+    <% if @user.products.blank? %>
+      <%= @user.email %> has no products!
+    <% else %>
+    <p><strong>Products:</strong></p>
+      <p><% @user.products.each do |product|%></p>
+        <%= product.title %>
+      <p><% end %></p>
+      <% if @user == current_user %>
+        <%= link_to 'Edit Profile', edit_user_registration_path %>
+      <% end %>
+    <% end %>
+
+  <br>
+  <hr>
+
+    <% if @user.rated_reviews.blank? %>
+      <strong><%= @user.email %> has no reviews!</strong>
+    <% else %>
+      <p>Overall Rating:</p>
+      <p><%= @user_rating %></p>
+
+      <hr>
+      <p><strong>Reviews:</strong></p>
+      <ul class="list-group">
+        <% @user.rated_reviews.each do |review| %>
+          <li class="list-group-item"><strong><%= review.reviewer.email %>: </strong><%= review.content %>
+            <strong><%= '⭐' * review.rating %></strong>
+          </li>
+        <% end %>
+      </ul>
+      <br>
+    <% end %>
+
+
+
+
+
+  <%= render "reviews/new" %>
+</div>

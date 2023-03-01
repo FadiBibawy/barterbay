@@ -10,8 +10,6 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.reviewer = current_user
     @review.rated_user = @user
-    @review.save
-    redirect_to user_path(@user)
 
     if @review.save
       redirect_to user_path(@user)
