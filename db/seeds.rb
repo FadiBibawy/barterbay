@@ -9,12 +9,24 @@
 require 'open-uri'
 require 'faker'
 
+puts 'droopping the database'
+p `rails db:drop`
+
+puts 'Creating the database'
+puts `rails db:create`
+
+puts 'Migrating the database'
+puts `rails db:migrate`
+
 puts 'Starting the Seed!'
 
 # puts 'Destroying all Users'
 # User.destroy_all
-puts 'Destroying all Users'
-User.destroy_all
+
+
+# puts 'Destroying all Users'
+# User.destroy_all
+
 
 puts "Creating Users..."
 
