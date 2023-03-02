@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one_attached :photo
+  has_one_attached :photo, dependent: :destroy
 
   has_many :products, dependent: :destroy
   has_many :offers, dependent: :destroy
