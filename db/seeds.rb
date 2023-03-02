@@ -13,11 +13,20 @@ puts 'Starting the Seed!'
 
 # puts 'Destroying all Users'
 # User.destroy_all
+puts 'Destroying all Users'
+User.destroy_all
+
+puts "Creating Users..."
+
+User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
+User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
+
+puts '---------------------------------'
 
 puts 'Destroying all Products'
 Product.destroy_all
 
-puts "creating products..."
+puts "Creating Products..."
 5.times do
   url = "https://picsum.photos/300/400"
   file = URI.open(url)
