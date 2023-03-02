@@ -1,0 +1,6 @@
+  <h3>Add a review</h3>
+  <%= simple_form_for [@user, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
