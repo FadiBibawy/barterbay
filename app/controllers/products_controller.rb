@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -22,7 +21,6 @@ class ProductsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 end
 
