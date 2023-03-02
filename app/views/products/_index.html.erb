@@ -8,7 +8,9 @@
     <% @products.each do |product| %>
       <li>
         <%= link_to product.title , product_path(product)%>
+        <%= link_to  new_offer_path(offer)%>
       </li>
     <% end %>
   </ul>
 </div>
+2
