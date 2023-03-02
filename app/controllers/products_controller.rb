@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: [:show]
+
   # before_action :product_params, only: [:new]
 
   def index

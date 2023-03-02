@@ -5,11 +5,14 @@
   <p>Find me in app/views/users/show.html.erb</p>
 
 
-  <h1><%= @user.email %></h1>
+  <h1><%= @user.name %></h1>
+  <h5>username: <%= @user.username %></h5>
+
+  <hr>
 
 
     <% if @user.products.blank? %>
-      <%= @user.email %> has no products!
+      <%= @user.username %> has no products!
     <% else %>
     <p><strong>Products:</strong></p>
       <p><% @user.products.each do |product|%></p>
@@ -33,7 +36,7 @@
       <p><strong>Reviews:</strong></p>
       <ul class="list-group">
         <% @user.rated_reviews.each do |review| %>
-          <li class="list-group-item"><strong><%= review.reviewer.email %>: </strong><%= review.content %>
+          <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
             <strong><%= '⭐' * review.rating %></strong>
           </li>
         <% end %>
@@ -45,5 +48,5 @@
 
 
 
-  <%= render "reviews/new" %>
+  <%= render "reviews/new" unless @user == current_user %>
 </div>

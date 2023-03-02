@@ -8,6 +8,12 @@ class User < ApplicationRecord
   has_many :rated_reviews, class_name: "Review", foreign_key: :rated_user_id, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  validates :username, uniqueness: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end
