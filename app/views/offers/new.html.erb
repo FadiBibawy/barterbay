@@ -1,1 +1,10 @@
 <h1>Offers#new</h1>
+
+<div class="container">
+  <%= @product.title %>
+
+  <%= simple_form_for [@product, @offer] do |f| %>
+    <%= f.input :offered_product, collection: current_user.products %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>
