@@ -16,13 +16,35 @@
     <% else %>
     <p><strong>Products:</strong></p>
       <p><% @user.products.each do |product|%></p>
-        <%= product.title %>
+        <%= link_to product.title, product_path(product) %>
       <p><% end %></p>
       <% if @user == current_user %>
         <%= link_to 'Edit Profile', edit_user_registration_path %>
       <% end %>
     <% end %>
 
+  <br>
+  <hr>
+  <% if @user == current_user %>
+    <p><strong>You offered:</strong></p>
+      <% @user.offers.each do |offer|%>
+        <div class="div">
+          <p><strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
+          <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
+          </p>
+        </div>
+      <p><% end %></p>
+    <hr>
+
+    <p><strong>You are offered:</strong></p>
+      <% @user.received_offers.each do |offer|%>
+        <div class="div">
+          <p><strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
+          <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
+          </p>
+        </div>
+      <p><% end %></p>
+  <% end %>
   <br>
   <hr>
 

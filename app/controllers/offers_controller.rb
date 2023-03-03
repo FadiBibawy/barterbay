@@ -1,10 +1,12 @@
 class OffersController < ApplicationController
+  before_action :set_product, only: [:new, :create]
+  before_action :set_offer, only: [:show]
+
   def index
     @offers = Offer.all
   end
 
   def show
-    @offer = Offer.find(params[:id])
   end
 
   def new
@@ -12,13 +14,13 @@ class OffersController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:product_id])
-    @offered_product = Product.find(params[:offered_product_id])
-    @offer = Offer.new
+    # @offered_product = Product.find(offer_params)
+    @offer = Offer.new(offered_product: Product.find(offer_params[:offered_product].to_i))
     @offer.product = @product
-    @offer.offered_product = @offered_product
+    @offer.user = current_user
+    # @offer.offered_product = @offered_product
     if @offer.save
-      redirect_to offer_path(@offer)
+      redirect_to user_path(current_user)
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,6 +29,14 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:offered_product_id, :product_id, :user_id [])
+    params.require(:offer).permit(:offered_product)
+  end
+
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
+
+  def set_offer
+    @offer = Offer.find(params[:id])
   end
 end
