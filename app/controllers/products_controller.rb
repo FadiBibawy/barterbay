@@ -7,7 +7,13 @@ class ProductsController < ApplicationController
   end
 
   def show
-
+    # @product = Product.find_by(id: params[:id])
+    @markers = [
+      {
+        lat: @product.latitude,
+        lng: @product.longitude
+      }
+    ]
   end
 
   def new
