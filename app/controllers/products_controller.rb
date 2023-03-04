@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:show]
-
+  before_action :set_product, only: [:show]
   # before_action :product_params, only: [:new]
 
   def index
@@ -9,6 +7,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+
   end
 
   def new
@@ -24,22 +23,6 @@ class ProductsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
 
-  end
-
-  def edit
-  end
-
-  def update
-    if @product.update(product_params)
-      redirect_to product_path(@product)
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @product.destroy
-    redirect_to products_path, status: :see_other
   end
 end
 
