@@ -8,9 +8,33 @@
     <% @products.each do |product| %>
       <li>
         <%= link_to product.title , product_path(product)%>
-        <%= link_to  new_offer_path(offer)%>
       </li>
     <% end %>
   </ul>
 </div>
-2
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+
+      <%= form_with url: products_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a product or address"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+
+
+      <div id="products">
+        <% @products.each do |product| %>
+          <h4><%= product.title %></h4>
+          <p><%= product.description %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
