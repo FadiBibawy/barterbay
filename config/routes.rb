@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :products do
-    resources :offers, only: [:new, :create, :show]
+    resources :offers, only: [:new, :create, :show] do
+      resources :chatrooms, only: [:show]
+    end
   end
 
   resources :offers, only: [:show]
