@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_product, only: [:new, :create]
+  before_action :set_product, only: %i[new create show]
   before_action :set_offer, only: [:show]
 
   def index
@@ -8,6 +8,7 @@ class OffersController < ApplicationController
 
   def show
     @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
   end
 
   def new

@@ -30,7 +30,7 @@
       <% @user.offers.each do |offer|%>
         <div class="div">
           <p><strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
-          <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
+          <%= link_to 'Show the offer', product_offer_path(offer), class: 'btn btn-primary' %>
           </p>
         </div>
       <p><% end %></p>
@@ -40,7 +40,7 @@
       <% @user.received_offers.each do |offer|%>
         <div class="div">
           <p><strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
-          <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
+          <%= link_to 'Show the offer', product_offer_path(offer), class: 'btn btn-primary' %>
           </p>
         </div>
       <p><% end %></p>
