@@ -30,10 +30,11 @@
 
       <div id="products">
         <% @products.each do |product| %>
-          <h4><%= product.title %></h4>
+          <h4><%= link_to product.title , product_path(product)%></h4>
           <p><%= product.description %></p>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
