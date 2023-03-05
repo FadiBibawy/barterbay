@@ -22,20 +22,15 @@ require 'faker'
 # puts 'Starting the Seed!'
 puts 'Destroying all Product'
 Product.destroy_all
+
 puts 'Destroying all Users'
 User.destroy_all
 
-
-
 puts "Creating Users..."
-
 User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
 User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
 
 puts '---------------------------------'
-
-puts 'Destroying all Products'
-Product.destroy_all
 
 puts "Creating Products..."
 5.times do
@@ -47,7 +42,7 @@ puts "Creating Products..."
                         description: "#{Faker::Commerce.material}\n#{Faker::Commerce.color}",
                         category: Faker::Commerce.department,
                         quality: quality.sample,
-                        address: 'Rudi-Dutschke-Straße 26, 10969 Berlin')
+                        address: Faker::Address.street_address)
 
   product.photos.attach(io: file, filename: "#{rand(1.5..3.0)}image.png", content_type: "image/png")
   product.user = User.all.sample
