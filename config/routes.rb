@@ -13,8 +13,13 @@ Rails.application.routes.draw do
   end
 
   resources :products do
-    resources :offers, only: [:new, :create, :show]
+    resources :offers, only: [:new, :create, :show, :index] do
+      resources :chatrooms, only: [:show] do
+        resources :messages, only: [:create]
+      end
+    end
   end
+
 
   resources :offers, only: [:show] do
     member do

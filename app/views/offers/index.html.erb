@@ -1,0 +1,12 @@
+<h1>offers#index</h1>
+
+<div class="container">
+  <ol class="list" style="list-style:">
+
+    <% @offers.each do |offer| %>
+      <li>
+         product : <%= offer.product_id %> => offered product : <%= offer.offered_product_id %>
+      </li>
+    <% end %>
+  </ol>
+</div>

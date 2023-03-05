@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :offers, dependent: :destroy
   has_many :received_offers, through: :products, source: :offers
+  has_many :messages
 
   has_many :reviews, foreign_key: :reviewer_id, dependent: :destroy
   has_many :rated_reviews, class_name: "Review", foreign_key: :rated_user_id, dependent: :destroy
