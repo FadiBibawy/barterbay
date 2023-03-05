@@ -82,3 +82,5 @@ gem 'faker'
 gem "geocoder"
 
 gem "pg_search"
+
+gem 'redis' #Redis is a dependency of the Action Cable pubsub adapter, which is used by Rails to manage real-time communication between the server and the client.
