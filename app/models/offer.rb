@@ -6,6 +6,17 @@ class Offer < ApplicationRecord
   validate :offered_product_cannot_be_same_as_product
   validate :unique_products_in_offers
 
+  def accept_or_refuse(status)
+    if status == 'accept'
+      self.accepted = true
+      self.refused = false
+    elsif status == 'refuse'
+      self.accepted = false
+      self.refused = true
+    end
+    self.save
+  end
+
   private
 
   def offered_product_cannot_be_same_as_product
