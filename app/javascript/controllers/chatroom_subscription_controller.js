@@ -8,6 +8,7 @@ export default class extends Controller {
   connect() {
     // createConsumer().subscriptions.create("ChatroomChannel")
     console.log(this.chatroomIdValue);
+    // console.log(data);
     createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       { received: (data) => { this.#insertMessageAndScrollDown(data) } }
