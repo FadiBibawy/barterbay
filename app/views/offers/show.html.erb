@@ -22,8 +22,8 @@
 
     <h3>to barter with your product:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
-    
-    
+
+
     <h3>to barter with your product:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
     <% if @offer.deal == false %>
@@ -49,21 +49,21 @@
 
 
 
-  <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @offer.id %>">
     <div class="chatroom">
-      <h1>#<%= @chatroom.name %></h1>
+      <h1>#<%= @offer.id %></h1>
 
       <div class="messages" data-chatroom-subscription-target="messages">
-        <% @chatroom.messages.each do |message| %>
+        <% @offer.messages.each do |message| %>
           <%= render "messages/message", message: message %>
         <% end %>
       </div>
     </div> <%# chatroom container %>
 
-    <%= simple_form_for [@product, @offer, @chatroom, @message], html: {class: "d-flex"} do |f| %>
+    <%= simple_form_for [@offer, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
       <%= f.input :content,
         label: false,
-        placeholder: "Message ##{@chatroom.name}",
+        placeholder: "Message ##{@offer.id}",
         wrapper_html: {class: "flex-grow-1"}
       %>
       <%= f.submit "Send", class: "btn btn-primary mb-3" %>

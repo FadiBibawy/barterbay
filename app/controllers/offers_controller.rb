@@ -8,7 +8,7 @@ class OffersController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.find(params[:id])
+    @chatroom = Offer.find(params[:id])
     @message = Message.new
   end
 

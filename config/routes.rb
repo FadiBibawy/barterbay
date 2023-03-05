@@ -15,13 +15,13 @@ Rails.application.routes.draw do
   resources :products do
     resources :offers, only: [:new, :create, :show, :index] do
       resources :chatrooms, only: [:show] do
-        resources :messages, only: [:create]
+        # resources :messages, only: [:create]
       end
     end
   end
 
-
   resources :offers, only: [:show] do
+    resources :messages, only: [:create]
     member do
       put :accept
       put :refuse
