@@ -10,6 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+# <<<<<<< chat
+# ActiveRecord::Schema[7.0].define(version: 2023_03_04_002057) do
+# =======
+# ActiveRecord::Schema[7.0].define(version: 2023_03_05_175322) do
+# >>>>>>> master
+
 ActiveRecord::Schema[7.0].define(version: 2023_03_05_175322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"

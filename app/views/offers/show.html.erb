@@ -5,12 +5,13 @@
     <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product) %></strong></h3>
     <h3>to barter with:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
-      <% if @offer.deal == false %>
-        <p>Your Offer is still Pending</p>
-      <% elsif @offer.accepted == true %>
+
+      <% if @offer.accepted == true %>
         <p>Your Offer is Accepted!</p>
-      <% else %>
+      <% elsif @offer.refused == true %>
         <p>Your Offer is Refused!</p>
+      <% else @offer.deal == false %>
+        <p>Your Offer is still Pending</p>
       <% end %>
 
 
@@ -18,6 +19,7 @@
   <% else %>
     <h3><%= @offer.user.username %> offered you:</h3>
     <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product) %></strong></h3>
+
     <h3>to barter with your product:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
     <% if @offer.deal == false %>
