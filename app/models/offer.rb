@@ -5,6 +5,7 @@ class Offer < ApplicationRecord
 
   validate :offered_product_cannot_be_same_as_product
   validate :unique_products_in_offers
+  validate :same_owner
 
   def accept_or_refuse(status)
     if status == 'accept'
@@ -29,6 +30,12 @@ class Offer < ApplicationRecord
     if Offer.exists?(product_id: product_id, offered_product_id: offered_product_id) ||
        Offer.exists?(product_id: offered_product_id, offered_product_id: product_id)
       errors.add(:base, "This offer already exists")
+    end
+  end
+
+  def same_owner
+    if product.user_id == offered_product.user_id
+      errors.add(:base, "You can't barter with yourself!")
     end
   end
 end
