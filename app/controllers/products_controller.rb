@@ -6,9 +6,11 @@ class ProductsController < ApplicationController
 
   def index
     # raise
-    @products = Product.joins("LEFT JOIN offers ON products.id = offers.product_id OR products.id = offers.offered_product_id")
-                       .where("offers.deal IS NULL OR offers.deal = ?", false)
-                       .distinct
+    # @products = Product.joins("LEFT JOIN offers ON products.id = offers.product_id OR products.id = offers.offered_product_id")
+    #                    .where("offers.deal IS NULL OR offers.deal = ?", false)
+    #                    .distinct
+    @products = Product.where("bartered = ?", false)
+
     if params[:query].present?
       @products = @products.search(params[:query])
     end
