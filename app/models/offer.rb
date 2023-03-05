@@ -50,7 +50,7 @@ class Offer < ApplicationRecord
   end
 
   def reset_product_attributes
-    product.update(deal: false, bartered: false)
-    offered_product.update(deal: false, bartered: false) if offered_product.present?
+    product.update(bartered: false)
+    offered_product.update(bartered: false) if offered_product.present?
   end
 end
