@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
   # before_action :product_params, only: [:new]
 
   def index
-    @products = Product.all
+    if params[:query].present?
+      @products = Product.search_by_title(params[:query])
+    else
+      @products = Product.all
+    end
   end
 
   def show
@@ -28,7 +32,6 @@ class ProductsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 end
 

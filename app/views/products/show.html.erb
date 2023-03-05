@@ -8,7 +8,13 @@
       <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill %>
     <% end %>
   </div>
+
+    <% if @product.user != current_user %>
+      <h3> <%= link_to "barter with this product", new_product_offer_path(@product)%></h3>
+    <% end %>
 </div>
+
+
 
 <%# Code to display the product details and its images in a carousel %>
 
