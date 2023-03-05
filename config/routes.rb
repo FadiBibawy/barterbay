@@ -20,7 +20,14 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :offers, only: [:show]
+
+  resources :offers, only: [:show] do
+    member do
+      put :accept
+      put :refuse
+    end
+  end
+  resources :offers, only: [:destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

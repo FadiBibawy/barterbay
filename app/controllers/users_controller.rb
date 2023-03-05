@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @review = Review.new
+    @availabe_products = @user.products.where(bartered: false)
+    @bartered_products = @user.products.where(bartered: true)
   end
 
   private

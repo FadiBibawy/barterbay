@@ -1,14 +1,29 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :set_product, only: [:show]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   # before_action :product_params, only: [:new]
 
   def index
-    @products = Product.all
+    # raise
+    # @products = Product.joins("LEFT JOIN offers ON products.id = offers.product_id OR products.id = offers.offered_product_id")
+    #                    .where("offers.deal IS NULL OR offers.deal = ?", false)
+    #                    .distinct
+    @products = Product.where("bartered = ?", false)
+
+    if params[:query].present?
+      @products = @products.search(params[:query])
+    end
   end
 
   def show
+    # @product = Product.find_by(id: params[:id])
+    @markers = [
+      {
+        lat: @product.latitude,
+        lng: @product.longitude
+      }
+    ]
   end
 
   def new
@@ -23,22 +38,6 @@ class ProductsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
-  end
-
-  def update
-    if @product.update(product_params)
-      redirect_to product_path(@product)
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @product.destroy
-    redirect_to products_path, status: :see_other
   end
 end
 

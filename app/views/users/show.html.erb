@@ -7,20 +7,19 @@
 
   <h1><%= @user.name %></h1>
   <h5>username: <%= @user.username %></h5>
-
+  <% if @user == current_user %>
+    <%= link_to 'Edit Profile', edit_user_registration_path %>
+  <% end %>
   <hr>
 
 
-    <% if @user.products.blank? %>
-      <%= @user.username %> has no products!
+    <% if @availabe_products.blank? %>
+      <%= @user == current_user ? 'You have' : "#{@user.username} has" %> no available products!
     <% else %>
     <p><strong>Products:</strong></p>
-      <p><% @user.products.each do |product|%></p>
+      <p><% @availabe_products.each do |product|%></p>
         <%= link_to product.title, product_path(product) %>
       <p><% end %></p>
-      <% if @user == current_user %>
-        <%= link_to 'Edit Profile', edit_user_registration_path %>
-      <% end %>
     <% end %>
 
   <br>
@@ -29,21 +28,33 @@
     <p><strong>You offered:</strong></p>
       <% @user.offers.each do |offer|%>
         <div class="div">
-          <p><strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
-          <%= link_to 'Show the offer', product_offer_path(offer), class: 'btn btn-primary' %>
+          <strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
+          <% if offer.accepted == true %>
+            <%= link_to 'Offer accepted!', offer_path(offer), class: 'btn btn-success' %>
+          <% elsif offer.refused == true %>
+            <%= link_to 'Offer refused!', offer_path(offer), class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
+          <% end %>
           </p>
         </div>
-      <p><% end %></p>
+      <% end %>
     <hr>
 
     <p><strong>You are offered:</strong></p>
       <% @user.received_offers.each do |offer|%>
         <div class="div">
-          <p><strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
-          <%= link_to 'Show the offer', product_offer_path(offer), class: 'btn btn-primary' %>
+          <strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
+          <% if offer.accepted == true %>
+            <%= link_to 'Offer accepted!', offer_path(offer), class: 'btn btn-success' %>
+          <% elsif offer.refused == true %>
+            <%= link_to 'Offer refused!', offer_path(offer), class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
+          <% end %>
           </p>
         </div>
-      <p><% end %></p>
+      <% end %>
   <% end %>
   <br>
   <hr>

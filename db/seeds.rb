@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+ADDRESSES = ['Rudi-Dutschke-Straße 26, 10969 Berlin']
 
 require 'open-uri'
 require 'faker'
@@ -19,22 +20,19 @@ require 'faker'
 # puts `rails db:migrate`
 
 # puts 'Starting the Seed!'
-
-puts 'Destroying all Users'
-User.destroy_all
+puts 'Destroying all Product'
+Product.destroy_all
 
 puts 'Destroying all Users'
 User.destroy_all
 
 puts "Creating Users..."
-
-User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
+amin = User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
+amin.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/amin.jfif')),
+                  filename: "amin.jfif", content_type: "image/jfif")
 User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
 
 puts '---------------------------------'
-
-puts 'Destroying all Products'
-Product.destroy_all
 
 puts "Creating Products..."
 5.times do
@@ -45,7 +43,8 @@ puts "Creating Products..."
   product = Product.new(title: Faker::Commerce.product_name,
                         description: "#{Faker::Commerce.material}\n#{Faker::Commerce.color}",
                         category: Faker::Commerce.department,
-                        quality: quality.sample)
+                        quality: quality.sample,
+                        address: Faker::Address.street_address)
 
   product.photos.attach(io: file, filename: "#{rand(1.5..3.0)}image.png", content_type: "image/png")
   product.user = User.all.sample
