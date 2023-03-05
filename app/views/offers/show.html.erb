@@ -11,7 +11,12 @@
     <h3>to barter with your product:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
   <% end %>
+
   <% if @offer.deal == false %>
     <p>Offer is still pending</p>
   <% end %>
+
+
+  <%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put %>
+  <%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put %>
 </div>

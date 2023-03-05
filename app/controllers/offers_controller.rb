@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_product, only: [:new, :create]
-  before_action :set_offer, only: [:show]
+  before_action :set_offer, only: [:show, :accept, :refuse]
 
   def index
     @offers = Offer.all
@@ -24,6 +24,16 @@ class OffersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def accept
+    @offer.accept_or_refuse('accept')
+    redirect_to @offer.product, notice: 'Offer accepted.'
+  end
+
+  def refuse
+    @offer.accept_or_refuse('refuse')
+    redirect_to @offer.product, notice: 'Offer refused.'
   end
 
   private
