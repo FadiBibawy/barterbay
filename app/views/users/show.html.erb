@@ -13,11 +13,11 @@
   <hr>
 
 
-    <% if @user.products.blank? %>
+    <% if @availabe_products.blank? %>
       <%= @user.username %> has no products!
     <% else %>
     <p><strong>Products:</strong></p>
-      <p><% @user.products.each do |product|%></p>
+      <p><% @availabe_products.each do |product|%></p>
         <%= link_to product.title, product_path(product) %>
       <p><% end %></p>
     <% end %>

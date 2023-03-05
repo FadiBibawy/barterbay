@@ -11,6 +11,7 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
+    @products = current_user.products.where('bartered:?', false)
   end
 
   def create
@@ -31,7 +32,9 @@ class OffersController < ApplicationController
     @offer.accept_or_refuse('accept')
     @offer.product.bartered = true
     @offer.offered_product.bartered = true
-    raise
+    @offer.product.save
+    @offer.offered_product.save
+
     if @offer.save(validate: false)
       redirect_to current_user, notice: 'Offer accepted.'
     else
