@@ -49,21 +49,21 @@
 
 
 
-  <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @offer.id %>">
     <div class="chatroom">
-      <h1>#<%= @chatroom.id %></h1>
+      <h1>#<%= @offer.id %></h1>
 
       <div class="messages" data-chatroom-subscription-target="messages">
-        <% @chatroom.messages.each do |message| %>
+        <% @offer.messages.each do |message| %>
           <%= render "messages/message", message: message %>
         <% end %>
       </div>
     </div> <%# chatroom container %>
 
-    <%= simple_form_for [@product, @offer, @chatroom, @message], html: {class: "d-flex"} do |f| %>
+    <%= simple_form_for [@offer, @message], html: {class: "d-flex"} do |f| %>
       <%= f.input :content,
         label: false,
-        placeholder: "Message ##{@chatroom.id}",
+        placeholder: "Message ##{@offer.id}",
         wrapper_html: {class: "flex-grow-1"}
       %>
       <%= f.submit "Send", class: "btn btn-primary mb-3" %>
