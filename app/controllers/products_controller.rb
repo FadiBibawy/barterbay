@@ -5,12 +5,12 @@ class ProductsController < ApplicationController
   # before_action :product_params, only: [:new]
 
   def index
+    # raise
+    @products = Product.joins("LEFT JOIN offers ON products.id = offers.product_id OR products.id = offers.offered_product_id")
+                       .where("offers.deal IS NULL OR offers.deal = ?", false)
+                       .distinct
     if params[:query].present?
-      @products = Product.search_by_title(params[:query])
-    else
-      @products = Product.joins("LEFT JOIN offers ON products.id = offers.product_id OR products.id = offers.offered_product_id")
-                  .where("offers.deal IS NULL OR offers.deal = ?", false)
-
+      @products = @products.search(params[:query])
     end
   end
 

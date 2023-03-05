@@ -27,7 +27,9 @@ puts 'Destroying all Users'
 User.destroy_all
 
 puts "Creating Users..."
-User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
+amin = User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
+amin.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/amin.jfif')),
+                  filename: "amin.jfif", content_type: "image/jfif")
 User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
 
 puts '---------------------------------'

@@ -15,11 +15,11 @@ class Offer < ApplicationRecord
     if status == 'accept'
       self.accepted = true
       self.refused = false
+      self.deal = true
     elsif status == 'refuse'
       self.accepted = false
       self.refused = true
     end
-    self.deal = true
   end
 
   private
