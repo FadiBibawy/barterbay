@@ -14,7 +14,7 @@ class Offer < ApplicationRecord
       self.accepted = false
       self.refused = true
     end
-    self.save
+    self.deal = true
   end
 
   private

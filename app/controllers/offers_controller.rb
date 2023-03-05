@@ -27,13 +27,26 @@ class OffersController < ApplicationController
   end
 
   def accept
+
     @offer.accept_or_refuse('accept')
-    redirect_to @offer.product, notice: 'Offer accepted.'
+    @offer.product.bartered = true
+    @offer.offered_product.bartered = true
+    raise
+    if @offer.save(validate: false)
+      redirect_to current_user, notice: 'Offer accepted.'
+    else
+      # error message
+      render :show, status: :unprocessable_entity
+    end
   end
 
   def refuse
     @offer.accept_or_refuse('refuse')
-    redirect_to @offer.product, notice: 'Offer refused.'
+    if @offer.save(validate: false)
+      redirect_to current_user, notice: 'Offer refused.'
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private

@@ -2,7 +2,6 @@ class Product < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  include PgSearch::Model
 
   has_many_attached :photos
 
@@ -13,9 +12,10 @@ class Product < ApplicationRecord
 
   validates :title, :description, :category, :quality, presence: true
 
+  include PgSearch::Model
   pg_search_scope :search_by_title,
-                  against: [:title],
+                  against: [:title, :description, :category],
                   using: {
-  tsearch: { prefix: true }
-  }
+                    tsearch: { prefix: true }
+                  }
 end
