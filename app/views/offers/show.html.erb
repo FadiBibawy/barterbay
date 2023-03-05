@@ -30,7 +30,13 @@
     <% end %>
   <% end %>
 
+<%# <%= link_to 'Delete', @offer, method: :delete, form: { data: { turbo_confirm: 'Do you really…' } })
+%>
 
+<%= link_to "Delete",
+  offer_path(@offer),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
 
 
 
