@@ -14,7 +14,7 @@
 
 
     <% if @availabe_products.blank? %>
-      <%= @user == current_user ? 'You have' : "#{@user.username} has" %> no products!
+      <%= @user == current_user ? 'You have' : "#{@user.username} has" %> no available products!
     <% else %>
     <p><strong>Products:</strong></p>
       <p><% @availabe_products.each do |product|%></p>
