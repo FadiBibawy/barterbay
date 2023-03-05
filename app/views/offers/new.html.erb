@@ -15,7 +15,7 @@
       </div>
     <% end %>
 
-    <%= f.input :offered_product, collection: current_user.products %>
+    <%= f.input :offered_product, collection: current_user.products.where(bartered: false) %>
     <%= f.button :submit, class: 'btn btn-primary' %>
   <% end %>
 </div>
