@@ -11,7 +11,7 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @products = current_user.products.where('bartered:?', false)
+    @products = current_user.products.where('bartered = ?', false)
   end
 
   def create

@@ -15,7 +15,17 @@
       </div>
     <% end %>
 
-    <%= f.input :offered_product, collection: current_user.products.where(bartered: false) %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%# <% options = []
+      options << ['Add New Product', new_product_path]
+      options += @products.map { |p| [p.title, p.id] } %>
+
+    <br>
+    <% if @products.empty? %>
+      <p>You don't have any products to barter with,</p>
+      <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
+    <% else %>
+      <%= f.input :offered_product, collection: @products %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
 </div>
