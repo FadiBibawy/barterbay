@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_product, only: [:new, :create]
-  before_action :set_offer, only: [:show, :accept, :refuse]
+  before_action :set_offer, only: [:show, :accept, :refuse, :destroy]
 
   def index
     @offers = Offer.all
@@ -11,7 +11,7 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @products = current_user.products.where('bartered:?', false)
+    @products = current_user.products.where('bartered = ?', false)
   end
 
   def create
@@ -25,6 +25,17 @@ class OffersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @offer.destroy
+    redirect_to current_user
+    # respond_to do |format|
+    #   format.html {}
+    #   format.turbo_stream { render turbo_stream: turbo_stream.remove(@offer) }
+    #   format.json { head :no_content }
+    # end
+
   end
 
   def accept

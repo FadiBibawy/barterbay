@@ -13,7 +13,7 @@ class Product < ApplicationRecord
   validates :title, :description, :category, :quality, presence: true
 
   include PgSearch::Model
-  pg_search_scope :search_by_title,
+  pg_search_scope :search,
                   against: [:title, :description, :category],
                   using: {
                     tsearch: { prefix: true }

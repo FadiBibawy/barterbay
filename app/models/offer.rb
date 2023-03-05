@@ -3,6 +3,9 @@ class Offer < ApplicationRecord
   belongs_to :product
   belongs_to :offered_product, class_name: "Product"
 
+  after_destroy :reset_product_attributes
+
+
   validate :offered_product_cannot_be_same_as_product
   validate :unique_products_in_offers
   validate :same_owner
@@ -12,11 +15,11 @@ class Offer < ApplicationRecord
     if status == 'accept'
       self.accepted = true
       self.refused = false
+      self.deal = true
     elsif status == 'refuse'
       self.accepted = false
       self.refused = true
     end
-    self.deal = true
   end
 
   private
@@ -44,5 +47,10 @@ class Offer < ApplicationRecord
     if product.bartered? || (offered_product.present? && offered_product.bartered?)
       errors.add(:base, "Cannot make an offer on a product that has already been bartered.")
     end
+  end
+
+  def reset_product_attributes
+    product.update(bartered: false)
+    offered_product.update(bartered: false) if offered_product.present?
   end
 end
