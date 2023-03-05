@@ -19,6 +19,7 @@
   <% else %>
     <h3><%= @offer.user.username %> offered you:</h3>
     <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product) %></strong></h3>
+
     <h3>to barter with your product:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
     
