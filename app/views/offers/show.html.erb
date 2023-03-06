@@ -23,9 +23,6 @@
     <h3>to barter with your product:</h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
 
-
-    <h3>to barter with your product:</h3>
-    <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
     <% if @offer.deal == false %>
       <%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put %>
       <%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put %>
