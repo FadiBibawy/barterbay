@@ -22,6 +22,7 @@ class OffersController < ApplicationController
     @offer = Offer.new(offered_product: Product.find(offer_params[:offered_product].to_i))
     @offer.product = @product
     @offer.user = current_user
+
     # @offer.offered_product = @offered_product
     if @offer.save
       redirect_to user_path(current_user)

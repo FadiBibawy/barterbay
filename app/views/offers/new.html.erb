@@ -20,8 +20,8 @@
       options += @products.map { |p| [p.title, p.id] } %>
 
     <br>
-    <% if @products.empty? %>
-      <p>You don't have any products to barter with,</p>
+    <% if @products.nil? || @products.empty? %>
+      <p>You don't have any products to barter with</p>
       <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
     <% else %>
       <%= f.input :offered_product, collection: @products %>
