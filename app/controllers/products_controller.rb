@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
     if params[:query].present?
       @products = @products.search(params[:query])
     end
+
+    if @products.empty?
+      flash[:notice] = "There are no products!"
+    end
   end
 
   def show
