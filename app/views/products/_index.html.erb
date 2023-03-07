@@ -24,7 +24,7 @@
       <div id="products">
         <% @products.each do |product| %>
           <h4><%= link_to product.title , product_path(product)%></h4>
-          <p><%= product.description %> || uploaded by: <%= product.user.name %></p>
+          <p><%= product.description %> || uploaded by: <%= link_to product.user.name, product.user %></p>
         <% end %>
       </div>
     </div>
