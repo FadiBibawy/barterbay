@@ -1,17 +1,12 @@
-<div class="container">
-  <%= @product.title %>
-  <p>Offered by: <%= @product.user.username %></p>
-  <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
+<div class="container d-flex">
 
   <div>
-    <% @product.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill %>
-    <% end %>
+    <%# <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <%# <% @product.photos.each do |photo| %>
+      <%# <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill %>
+    <%# <% end %>
   </div>
 
-    <% if @product.user != current_user %>
-      <h3> <%= link_to "barter with this product", new_product_offer_path(@product)%></h3>
-    <% end %>
 </div>
 
 
@@ -22,12 +17,19 @@
   <div class="row">
     <div class="col-md-6">
       <%# Display the first photo in the array %>
-      <%= image_tag @product.photos.first.url, class: "img-fluid mb-4" if @product.photos.present? %>
+      <%# <%= image_tag @product.photos.first.url, class: "img-fluid mb-4" if @product.photos.present? %>
       <%# Display the product information %>
       <h1><%= @product.title %></h1>
+          <p>Offered by: <%= link_to @product.user.username, @product.user %></p>
+
       <h4><%= @product.category %></h4>
       <p><%= @product.description %></p>
       <p><strong>Quality:</strong> <%= @product.quality %></p>
+      <div>
+        <% if @product.user != current_user %>
+          <h3> <%= link_to "barter", new_product_offer_path(@product)%></h3>
+        <% end %>
+      </div>
       <p><strong>Address:</strong> <%= @product.address %></p>
       <div style="width: 300px; height: 300px;"
         data-controller="map"
@@ -55,6 +57,7 @@
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
+
           <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>

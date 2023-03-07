@@ -1,5 +1,4 @@
 class OffersController < ApplicationController
-
   before_action :set_product, only: [:new, :create]
   before_action :set_offer, only: [:show, :accept, :refuse, :destroy]
 
@@ -13,8 +12,8 @@ class OffersController < ApplicationController
   end
 
   def new
-    @offer = Offer.new
     @products = current_user.products.where('bartered = ?', false)
+    @offer = Offer.new
   end
 
   def create
@@ -39,11 +38,9 @@ class OffersController < ApplicationController
     #   format.turbo_stream { render turbo_stream: turbo_stream.remove(@offer) }
     #   format.json { head :no_content }
     # end
-
   end
 
   def accept
-
     @offer.accept_or_refuse('accept')
     @offer.product.bartered = true
     @offer.offered_product.bartered = true
