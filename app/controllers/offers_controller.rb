@@ -12,7 +12,6 @@ class OffersController < ApplicationController
   end
 
   def new
-    @products = current_user.products.where('bartered = ?', false)
     @offer = Offer.new
   end
 
