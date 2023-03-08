@@ -18,4 +18,12 @@ class Product < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def self.filter_by_category(category)
+    if category.present?
+      where(category: category)
+    else
+      all
+    end
+  end
 end

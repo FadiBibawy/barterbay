@@ -32,6 +32,12 @@
   </ul>
 </div>
 
+<%= form_tag products_path, method: :get do %>
+  <%= label_tag :category, "Category:" %>
+  <%= select_tag :category, options_for_select(Product.all.pluck(:category).uniq, params[:category]) %>
+  <%= submit_tag "Use Filter" %>
+<% end %>
+
 
 
       <div id="products">
