@@ -20,10 +20,10 @@
       <%# <%= image_tag @product.photos.first.url, class: "img-fluid mb-4" if @product.photos.present? %>
       <%# Display the product information %>
       <h1><%= @product.title %></h1>
-          <p>Offered by: <%= link_to @product.user.username, @product.user %></p>
+          <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
 
-      <h4><%= @product.category %></h4>
-      <p><%= @product.description %></p>
+      <h4><%= @product.category %> : <%= @product.subcategory %></h4>
+      <p><strong>Describtion:</strong> <%= @product.description %></p>
       <p><strong>Quality:</strong> <%= @product.quality %></p>
       <div>
         <% if @product.user != current_user %>

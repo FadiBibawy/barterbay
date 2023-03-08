@@ -1,7 +1,11 @@
-    <%= simple_form_for @product do |f| %>
+    <%= simple_form_for @product, data: { controller: 'product-form' } do |f| %>
     <%= f.input :title, placeholder: "Title" %>
     <%= f.input :description, placeholder: "Describe your product" %>
-    <%= f.input :category, placeholder: "Category" %>
+    <%# <%= f.input :category, placeholder: "Category" %>
+    <%= f.input :category, collection: ['service', 'goods'], prompt: 'Select a category',
+      input_html: { id: 'category-select', data: { product_form_target: 'categorySelect', action: 'change->product-form#updateSubcategories' } } %>
+    <%= f.input :subcategory, collection: [], prompt: 'Select a subcategory',
+      input_html: { id: 'subcategory-select', disabled: true, data: { product_form_target: 'subcategorySelect' } } %>
     <%= f.input :quality, placeholder: "Quality" %>
     <%= f.input :address, placeholder: "Address" %>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>

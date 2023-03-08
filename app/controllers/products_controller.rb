@@ -52,5 +52,5 @@ def set_product
 end
 
 def product_params
-  params.require(:product).permit(:title, :description, :category, :quality, photos: [])
+  params.require(:product).permit(:title, :description, :quality, :category, :subcategory, photos: [])
 end
