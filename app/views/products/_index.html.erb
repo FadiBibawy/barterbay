@@ -19,12 +19,18 @@
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
 
-
-
-      <div id="products">
+<%# <h4><%= link_to product.title , product_path(product) </h4>
+    <p><%= product.description || uploaded by: <%= link_to product.user.name, product.user %>
+      <div id="products" class='mt-4 row gap-3'>
         <% @products.each do |product| %>
-          <h4><%= link_to product.title , product_path(product)%></h4>
-          <p><%= product.description %> || uploaded by: <%= link_to product.user.name, product.user %></p>
+          <div class="card text-bg-light mb-3 col-4" style="max-width: 18rem;">
+            <div class="card-header">Category: <%= product.category%></div>
+            <div class="card-body">
+              <h5 class="card-title h5"><%= product.title %></h5>
+              <p class="card-text"><%= product.description %></p>
+              <%= link_to "Show more", product_path(product), class: 'btn btn-primary'%>
+            </div>
+        </div>
         <% end %>
         <br>
         <% if @products.empty? %>
