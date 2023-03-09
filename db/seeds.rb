@@ -30,7 +30,18 @@ puts "Creating Users..."
 amin = User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
 amin.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/amin.jfif')),
                   filename: "amin.jfif", content_type: "image/jfif")
-User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
+
+alex = User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
+alex.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/alex.jfif')),
+                  filename: "alex.jfif", content_type: "image/jfif")
+
+osama = User.create(email: 'osama@osama.com', password: '123456', username: 'osamaTheKing', first_name: 'osama', last_name: 'shehata')
+osama.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/osama.jfif')),
+                  filename: "osama.jfif", content_type: "image/jfif")
+
+fadi = User.create(email: 'fadi@fadi.com', password: '123456', username: 'fadiFedo', first_name: 'fadi', last_name: 'bibawy')
+fadi.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/fadi.jfif')),
+                  filename: "fadi.jfif", content_type: "image/jfif")
 
 puts '---------------------------------'
 
@@ -39,12 +50,13 @@ puts "Creating Products..."
   url = "https://picsum.photos/300/400"
   file = URI.open(url)
   quality = ["good", "very good", "fair", "not bad"]
+  address = ['Rudi-Dutschke-Straße 26, 10969 Berlin', '16 Vla Gaudelet, 75011 Paris, France', 'C/ del Bruc, 149, 08037 Barcelona, Spain', '380 Bd Brahim Roudani, Casablanca, Morocco']
 
   product = Product.new(title: Faker::Commerce.product_name,
                         description: "#{Faker::Commerce.material}\n#{Faker::Commerce.color}",
                         category: Faker::Commerce.department,
                         quality: quality.sample,
-                        address: Faker::Address.street_address)
+                        address: address.sample)
 
   product.photos.attach(io: file, filename: "#{rand(1.5..3.0)}image.png", content_type: "image/png")
   product.user = User.all.sample
