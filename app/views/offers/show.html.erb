@@ -1,31 +1,41 @@
-<div class="container">
+<div class="container mt-4">
 
 <% if @offer.user == current_user %>
+<div class="row">
+  <div class="col-md-6">
     <h3>You offered:</h3>
-    <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product) %></strong></h3>
+    <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product), class: "btn btn-dark" %></strong></h3>
+    </div>
+  <div class="col-md-6">
     <h3>to barter with:</h3>
-    <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
-
+    <h3><strong><%= link_to @offer.product.title, product_path(@offer.product), class: "btn btn-dark" %></strong></h3>
+</div>
+</div>
       <% if @offer.accepted == true %>
         <p>Your Offer is Accepted!</p>
       <% elsif @offer.refused == true %>
         <p>Your Offer is Refused!</p>
       <% else @offer.deal == false %>
-        <p>Your Offer is still Pending</p>
+        <p>Your <mark>Offer</mark> is still Pending...</p>
       <% end %>
 
 
-
   <% else %>
-    <h3><%= @offer.user.username %> offered you:</h3>
-    <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product) %></strong></h3>
-
+  <div class="row">
+  <div class="col-md-6">
+    <h3><%= @offer.user.username.capitalize %> offered you:</h3>
+    <%= button_to @offer.offered_product.title, product_path(@offer.offered_product), class: "btn btn-dark" %>
+  </div>
+  <div class="col-md-6">
     <h3>to barter with your product:</h3>
-    <h3><strong><%= link_to @offer.product.title, product_path(@offer.product) %></strong></h3>
-
+    <%= button_to @offer.product.title, product_path(@offer.product), class: "btn btn-dark" %>
+  </div>
+</div> <%# ROW %>
+<hr>
+<div class="row">
     <% if @offer.deal == false %>
-      <%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put %>
-      <%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put %>
+      <div class='col-md-4'><%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put, class: 'btn btn-outline-success' %></div>
+      <div class='col-md-4'><%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put, class: 'btn btn-outline-warning' %></div>
     <% elsif @offer.accepted == true %>
       <p>You Accepted the Offer!</p>
     <% else %>
@@ -35,16 +45,10 @@
 
 <%# <%= link_to 'Delete', @offer, method: :delete, form: { data: { turbo_confirm: 'Do you really…' } })
 %>
-
-<%= link_to "Delete",
-  offer_path(@offer),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
-
-
-
-
-
+<div class='col-md-4'>
+  <%= link_to "Delete", offer_path(@offer),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-danger' %> </div>
+</div> <%# ROW %>
 
   <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @offer.id %>">
     <div class="chatroom">
