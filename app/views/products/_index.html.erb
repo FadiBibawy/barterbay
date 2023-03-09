@@ -22,7 +22,10 @@
     <p><%= product.description || uploaded by: <%= link_to product.user.name, product.user %>
       <div id="products" class='mt-4 row gap-3'>
         <% @products.each do |product| %>
-          <div class="card text-bg-light mb-3 col-4" style="max-width: 18rem;">
+          <div class="card text-bg-light mb-3 col-4"
+               style="max-width: 18rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path product.photos.first.key, height: 300, crop: :fill %>')"
+
+               >
             <div class="card-header">Category: <%= product.category%></div>
             <div class="card-body">
               <h5 class="card-title h5"><%= product.title %></h5>
