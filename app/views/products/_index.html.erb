@@ -24,9 +24,8 @@
         <% @products.each do |product| %>
           <%= link_to product do %>
             <div class="card text-bg-light col-4"
-                style="max-width: 18rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path product.photos.first.key, height: 300, crop: :fill %>')"
-
-                >
+                 style="max-width: 18rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path product.photos.first.key, height: 300, crop: :fill %>')"
+                 >
               <div class="card-header">Category: <%= product.category%></div>
               <div class="card-body">
                 <h5 class="card-title h5"><%= product.title %></h5>

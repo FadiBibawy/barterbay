@@ -51,10 +51,14 @@ puts "Creating Products..."
   file = URI.open(url)
   quality = ["good", "very good", "fair", "not bad"]
   address = ['Rudi-Dutschke-Straße 26, 10969 Berlin', '16 Vla Gaudelet, 75011 Paris, France', 'C/ del Bruc, 149, 08037 Barcelona, Spain', '380 Bd Brahim Roudani, Casablanca, Morocco']
+  category = ['service', 'goods']
+  service = ['cleaning', 'repair', 'maintenance']
+  goods = ['clothes', 'furniture', 'electronics', 'books']
 
   product = Product.new(title: Faker::Commerce.product_name,
                         description: "#{Faker::Commerce.material}\n#{Faker::Commerce.color}",
-                        category: Faker::Commerce.department,
+                        category: category.sample,
+                        subcategory: category == 'service' ? service.sample : goods.sample,
                         quality: quality.sample,
                         address: address.sample)
 
