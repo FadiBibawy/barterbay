@@ -16,26 +16,29 @@
       <% end %>
 
       <div id="products">
+      <div class="row">
         <% @products.each do |product| %>
-          <div class = "product_card">
-            <div class = "imgBx">
-                <%= cl_image_path product.photos.first.key, height: 300, crop: :fill %>
+          <div class="col-sm-1 col-md-3 col-lg-4">
+            <div class = "product_card mt-4">
+              <div class = "imgBx">
+                  <%= cl_image_path product.photos.first.key, height: 300, crop: :fill %>
+              </div>
               <div class="contentBx">
                 <h3><%= link_to product.title , product_path(product)%></h3>
+
                 <div class = "user">
                   <h4>Offer from:</h4>
                   <p><%= product.user.name %></p>
-                    <div class = "quality">
-                      <h4>Quality:</h4>
-                      <p><%= product.quality %></p>
-                    </div>
-                  </div>
+                </div>
+                <div class = "quality">
+                  <h4>Quality:</h4>
+                  <p><%= product.quality %></p>
                 </div>
               </div>
             </div>
           </div>
         <% end %>
-        </div>
+      </div>
       </div>
     </div>
   </div>
