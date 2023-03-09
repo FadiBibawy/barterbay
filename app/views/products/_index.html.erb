@@ -1,6 +1,3 @@
-
-
-<br>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-8  d-flex justify-content-between">
@@ -18,27 +15,30 @@
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
 
-<%# <h4><%= link_to product.title , product_path(product) </h4>
-    <p><%= product.description || uploaded by: <%= link_to product.user.name, product.user %>
-      <div id="products" class='mt-4 row gap-3'>
+      <div id="products">
+      <div class="row">
         <% @products.each do |product| %>
-          <%= link_to product do %>
-            <div class="card text-bg-light col-4"
-                 style="max-width: 18rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path product.photos.first.key, height: 300, crop: :fill %>')"
-                 >
-              <div class="card-header">Category: <%= product.category%></div>
-              <div class="card-body">
-                <h5 class="card-title h5"><%= product.title %></h5>
-                <p class="card-text"><%= product.description %></p>
-                <%# <%= link_to "Show more", product_path(product), class: 'btn btn-primary'%>
+          <div class="col-sm-1 col-md-3 col-lg-4">
+            <div class = "product_card mt-4">
+              <div class = "imgBx">
+                  <%= cl_image_tag product.photos.first.key, height: 300, crop: :fill %>
+              </div>
+              <div class="contentBx">
+                <h3><%= link_to product.title , product_path(product)%></h3>
+
+                <div class = "user">
+                  <h4>Offer from:</h4>
+                  <p><%= product.user.name %></p>
+                </div>
+                <div class = "quality">
+                  <h4>Quality:</h4>
+                  <p><%= product.quality %></p>
+                </div>
               </div>
             </div>
-          <% end %>
+          </div>
         <% end %>
-        <br>
-        <% if @products.empty? %>
-          <%# <p>There are no products with your search!</p> %>
-        <% end %>
+      </div>
       </div>
     </div>
   </div>

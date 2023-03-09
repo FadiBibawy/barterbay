@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_171214) do
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "category"
+    t.string "old_category"
     t.string "quality"
     t.string "address"
     t.float "latitude"
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_171214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "bartered", default: false
+    t.string "category"
     t.string "subcategory"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
