@@ -1,15 +1,15 @@
 <div class="d-flex justify-content-center">
-<%= simple_form_for @product, data: { controller: 'product-form' } do |f| %>
-<%= f.input :title, placeholder: "Title", input_html: { class: 'form-control' } %>
-<%= f.input :description, placeholder: "Describe your product", input_html: { class: 'form-control' } %>
-<%= f.input :category, collection: ['service', 'goods'], prompt: 'Select a category',
-  input_html: { id: 'category-select', data: { product_form_target: 'categorySelect', action: 'change->product-form#updateSubcategories' }, class: 'form-control' } %>
-<%= f.input :subcategory, collection: [], prompt: 'Select a subcategory',
-  input_html: { id: 'subcategory-select', disabled: true, data: { product_form_target: 'subcategorySelect' }, class: 'form-control' } %>
-<%= f.input :quality, placeholder: "Quality", input_html: { class: 'form-control' } %>
-<%= f.input :address, placeholder: "Address", input_html: { class: 'form-control' } %>
-<%= f.input :photos, as: :file, input_html: { multiple: true, class: 'form-control' } %>
+  <%= simple_form_for @product, data: { controller: 'product-form' } do |f| %>
+      <%= f.input :title, placeholder: "Title", input_html: { class: 'form-control' } %>
+      <%= f.input :description, placeholder: "Describe your product", input_html: { class: 'form-control' } %>
+      <%= f.input :category, collection: ['service', 'goods'], prompt: 'Select a category',
+        input_html: { id: 'category-select', data: { product_form_target: 'categorySelect', action: 'change->product-form#updateSubcategories' }, class: 'form-control' } %>
+      <%= f.input :subcategory, collection: [], prompt: 'Select a subcategory',
+        input_html: { id: 'subcategory-select', disabled: true, data: { product_form_target: 'subcategorySelect' }, class: 'form-control' } %>
+      <%= f.input :quality, placeholder: "Quality", input_html: { class: 'form-control' } %>
+      <%= f.input :address, placeholder: "Address", input_html: { class: 'form-control', autocomplete: "street-address" } %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'form-control' } %>
 
-<%= f.submit class: 'btn btn-primary' %>
+      <%= f.submit class: 'btn btn-primary' %>
   <% end %>
 </div>

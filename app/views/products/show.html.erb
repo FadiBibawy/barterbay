@@ -18,7 +18,6 @@
       <%# Display the product information %>
       <h1><%= @product.title %></h1>
       <div class="container d-flex">
-
   <div>
     <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
     <% @product.photos.each do |photo| %>
@@ -28,7 +27,15 @@
  </div>
 </div>
           <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
+            <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
 
+            <% if @product.user == current_user %>
+
+              <p><%= link_to "Delete this Product",
+                      product_path(@product),
+                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                      %></p>
+            <% end %>
           <div class="col">
       <div class="accordion" id="accordionPanelsStayOpenExample">
   <div class="accordion-item">
