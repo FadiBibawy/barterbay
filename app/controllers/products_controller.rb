@@ -43,14 +43,15 @@ class ProductsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-end
 
-private
 
-def set_product
-  @product = Product.find(params[:id])
-end
+  private
 
-def product_params
-  params.require(:product).permit(:title, :description, :quality, :category, :subcategory, photos: [])
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:title, :description, :quality, :category, :address, :subcategory, photos: [])
+  end
 end

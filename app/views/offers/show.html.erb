@@ -7,10 +7,11 @@
     <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product), class: "btn btn-dark" %></strong></h3>
     </div>
   <div class="col-md-6">
-    <h3>to barter with:</h3>
+    <h3>to barter with: <%= link_to @offer.product.user.username, @offer.product.user %></h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product), class: "btn btn-dark" %></strong></h3>
 </div>
 </div>
+
       <% if @offer.accepted == true %>
         <p>Your Offer is Accepted!</p>
       <% elsif @offer.refused == true %>
@@ -52,7 +53,7 @@
 
   <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @offer.id %>">
     <div class="chatroom">
-      <h1>#<%= @offer.id %></h1>
+      <h1>Messages:</h1>
 
       <div class="messages" data-chatroom-subscription-target="messages">
         <% @offer.messages.each do |message| %>
@@ -64,7 +65,7 @@
     <%= simple_form_for [@offer, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
       <%= f.input :content,
         label: false,
-        placeholder: "Message ##{@offer.id}",
+        placeholder: "Message",
         wrapper_html: {class: "flex-grow-1"}
       %>
       <%= f.submit "Send", class: "btn btn-primary mb-3" %>
