@@ -7,10 +7,11 @@
     <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product), class: "btn btn-dark" %></strong></h3>
     </div>
   <div class="col-md-6">
-    <h3>to barter with:</h3>
+    <h3>to barter with: <%= link_to @offer.product.user.username, @offer.product.user %></h3>
     <h3><strong><%= link_to @offer.product.title, product_path(@offer.product), class: "btn btn-dark" %></strong></h3>
 </div>
 </div>
+
       <% if @offer.accepted == true %>
         <p>Your Offer is Accepted!</p>
       <% elsif @offer.refused == true %>
