@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   # before_action :product_params, only: [:new]
@@ -44,6 +44,22 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to @product
+    else
+      render :form, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @product.destroy
+    redirect_to current_user, status: :see_other
+  end
 
   private
 

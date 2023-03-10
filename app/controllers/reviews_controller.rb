@@ -14,7 +14,9 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to user_path(@user)
     else
-      render :new, status: :unprocessable_entity
+      # render :new, status: :unprocessable_entity
+      redirect_to @user
+      flash[:alert] = 'Both fields are required!'
     end
   end
 
