@@ -8,4 +8,72 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+
 }
+
+.anavbar{
+  font-family: 'Manrope';
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+.alogotext{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 36px;
+    /* identical to box height, or 100% */
+    letter-spacing: -1.5px;
+    /* Black */
+    color: #101913;
+}
+
+.alogotextgreen
+{
+  color: #3C9379
+}
+
+.aregistration{
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 20px;
+
+  width: 165px;
+  height: 40px;
+
+}
+
+.ageneralbutton{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 12px 18px;
+gap: 10px;
+
+width: 102px;
+height: 40px;
+
+/* Green */
+
+background: #3C9379;
+border-radius: 8px;
+}
+
+.acurrentusernav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 21px;
+}
+ .link {
+  text-decoration: none;
+ }

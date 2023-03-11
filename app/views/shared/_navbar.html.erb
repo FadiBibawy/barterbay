@@ -1,23 +1,29 @@
-<div class="navbar navbar-expand-sm navbar-dark bg-dark navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "barter logo.jpg" %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", root_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", '#' , class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown d-flex align-items-center">
+<%# New navabar from the updated figma %>
+<%# general css anavbar %>
+<div class = "navbar anavbar" >
+  <div  class='container-fluid'>
+    <div class = "alogotext">Barter<span style="color:#3C9379">bay</span>
+    </div>
+    <%# sing in logic where we start with not sign in user %>
+    <% unless user_signed_in? %>
+  <%# login and register button %>
+    <div class = "aregistration">
+      <%# login %>
+      <div class = "aregistration link" ><%= link_to "Login", new_user_session_path%>
+      </div>
+      <%# register button %>
+      <div class = "ageneralbutton">
+      <%# text %>
+        <div><span style="color:#fFFFFF"><%= link_to "Register", new_user_registration_path%></span></div>
+        <% else %>
+        <%# show the nav with user info %>
+        <div  class="acurrentusernav" >
+        <%# home link  %>
+        <div class = "aregistration" ><%= link_to "Home", root_path %>
+        <%# message link %>
+        <div class = "aregistration" ><%= link_to "Message", '#' %>
+        <%# avatar with the profil link %>
+        <li class="nav-item dropdown d-flex align-items-center">
             <% if current_user.photo.key %>
               <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
@@ -31,12 +37,14 @@
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
         <% end %>
-      </ul>
-    </div>
+        </div>
+      </div>
   </div>
+
+  </div>
+<%# add logotext %>
 </div>
+
+<%# addion of the barterbay logotext on the left side  %>
+<%# Addion of  the css black and green to the text .logo-text %>
