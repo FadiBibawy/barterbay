@@ -1,26 +1,7 @@
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-
-
-
-  </div>
-
-
 
 
 <%# Code to display the product details and its images in a carousel %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <%# Display the first photo in the array %>
-      <%# <%= image_tag @product.photos.first.url, class: "img-fluid mb-4" if @product.photos.present? %>
-      <%# Display the product information %>
-      <h1><%= @product.title %></h1>
-      <div class="container d-flex">
-  <div>
-    <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
 
     <%= @product.photos.each_with_index do |photo, index| %>
 
@@ -38,73 +19,9 @@
 
 
     <% end%>
-  </div>
- </div>
-</div>
-          <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
-            <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
 
-            <% if @product.user == current_user %>
 
-              <p><%= link_to "Delete this Product",
-                      product_path(@product),
-                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                      %></p>
-            <% end %>
-          <div class="col">
-      <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-              Description
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-            <div class="accordion-body">
-              <%= @product.description %> <p><%= @product.category %> : <%= @product.subcategory %></p>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-              Quality
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-            <div class="accordion-body">
-            <%= @product.quality %>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              User Review
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-            <div class="accordion-body">
-            <%= @product.user.email %> review not available for that user
-            </div>
-          </div>
-        </div>
-      </div>
 
-<p></p>
-<p></p>
-      <div>
-        <% if @product.user != current_user %>
-          <button type="button" class="btn btn-success"> <strong><%= link_to "barter", new_product_offer_path(@product)%></strong></button>
-        <% end %>
-      </div>
-      <p><strong>Address:</strong> <%= @product.address %></p>
-      <div style="width: 300px; height: 300px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
     <%# Display the remaining photos in a carousel %>
     <% if @product.photos.size > 1 %>
       <div class="col-md-6">
@@ -133,20 +50,24 @@
         </div>
       </div>
     <% end %>
-  </div>
-</div>
+
 
 
 
 
 
 <div class="container">
-  <div class="product-up">
-    <div class="page-left">
+  <div class="product-up row flex-nowrap">
+    <div class="page-left col-4">
+      <%# <div class="main-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @product.photos.first.key, height: 500, crop: :fill %>
       <div class="main-pic">
-        <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
-
+        <%= cl_image_tag  @product.photos.first.key, height: 400, crop: :fill%>
+        <div class="pic-title">
+          <h4><strong><%= @product.title %></strong></h4>
+          <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
+        </div>
       </div>
+
       <div class="small-pics">
         <% @product.photos.each_with_index do |photo, index| %>
 
@@ -165,24 +86,26 @@
 
       </div>
     </div>
-    <div class="page-right">
+    <div class="page-right col-8">
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-              Description
+              <strong>Description</strong>
             </button>
           </h2>
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body">
               <%= @product.description %> <p><%= @product.category %> : <%= @product.subcategory %></p>
+              <p><strong>Address:</strong> <%= @product.address %></p>
+
             </div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-              Quality
+              <strong>Quality</strong>
             </button>
           </h2>
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -194,7 +117,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingThree">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              User Review
+              <strong>User Review</strong>
             </button>
           </h2>
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
@@ -205,11 +128,26 @@
         </div>
       </div>
       <div class="product-map">
-
+        <div style="width: 300px; height: 300px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
       <div class="barter-btn">
-
+        <% if @product.user != current_user %>
+          <button type="button" class="btn btn-success"> <strong><%= link_to "barter", new_product_offer_path(@product)%></strong></button>
+        <% end %>
       </div>
+      <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
+
+      <% if @product.user == current_user %>
+
+        <p><%= link_to "Delete this Product",
+                product_path(@product),
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                %></p>
+      <% end %>
     </div>
   </div>
 </div>

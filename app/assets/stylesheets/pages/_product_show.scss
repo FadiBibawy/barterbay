@@ -1,12 +1,12 @@
 
 button {
-  border-width: 0px;
+  border: none;
 }
 
 .product-up {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  // display: flex;
+  // flex-direction: row;
+  flex-grow: 1;
   padding: 0px;
   gap: 59px;
 }
@@ -18,15 +18,30 @@ button {
   padding: 0px;
   gap: 25px;
 
-  width: 567px;
-  height: 488.09px;
+  // width: 567px;
+  // height: 488.09px;
 }
 
 
 .main-pic {
-  width: 567px;
-  height: 362.29px;
+  position: relative;
+  // display: flex;
+  // min-width: 500px;
+  // min-height: 700px;
+  // padding-top: 120%;
+  width: 100%;
+  // background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  > img {
+    width: 100% !important
+  }
 }
+// .card-category {
+//   width: 567px;
+//   height: 362.29px;
+// }
 
 .small-pics {
   display: flex;
@@ -44,8 +59,11 @@ button {
 .page-right {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   align-items: center;
   padding: 0px;
+  gap: 20px;
+
   // gap: 27px;
 
   // width: 424px;
@@ -62,3 +80,40 @@ button {
 //   // width: 404px;
 //   // height: 187px;
 // }
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+
+}
+
+.accordion-button {
+  border-radius: 8px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #F5F5F5;
+}
+
+.collapsed {
+  background-color: #3C9379;
+}
+
+.pic-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 9px;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  // position: absolute;
+  // width: 140px;
+  // height: 65px;
+  // left: 370px;
+  // top: 16px;
+}
