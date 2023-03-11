@@ -3,9 +3,10 @@
     <div class="col">
 
 
-    <div class="col">
-    </div>
+
   </div>
+
+
 
 
 <%# Code to display the product details and its images in a carousel %>
@@ -20,8 +21,22 @@
       <div class="container d-flex">
   <div>
     <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
-    <% @product.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill %>
+
+    <%= @product.photos.each_with_index do |photo, index| %>
+
+      <button data-bs-toggle="modal" data-bs-target="#pictureModal-<%=index%>" data-controller="modal">
+        <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#pictureModal-#{index}", data_controller:"modal" %>
+      </button>
+
+      <div class="modal fade" id="pictureModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <%= cl_image_tag photo.key, height: 500, width: 700, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#exampleModal", data_controller:"modal" %>
+          </div>
+        </div>
+      </div>
+
+
     <% end%>
   </div>
  </div>
@@ -118,5 +133,42 @@
         </div>
       </div>
     <% end %>
+  </div>
+</div>
+
+
+
+
+
+<div class="container">
+  <div class="product-up">
+    <div class="page-left">
+      <div class="main-pic">
+        <%= cl_image_tag @product.photos.first.key, height: 300, width: 400, crop: :fill %>
+
+      </div>
+      <div class="small-pics">
+        <% @product.photos.each_with_index do |photo, index| %>
+
+          <button data-bs-toggle="modal" data-bs-target="#pictureModal-<%=index%>" data-controller="modal">
+            <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#pictureModal-#{index}", data_controller:"modal" %>
+          </button>
+
+          <div class="modal fade" id="pictureModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="modal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <%= cl_image_tag photo.key, height: 500, width: 700, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#exampleModal", data_controller:"modal" %>
+              </div>
+            </div>
+          </div>
+        <%end%>
+
+      </div>
+    </div>
+    <div class="page-right">
+      <div class="product-info">
+
+      </div>
+    </div>
   </div>
 </div>
