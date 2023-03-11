@@ -21,17 +21,17 @@
           <div class="col-sm-1 col-md-3 col-lg-4">
             <div class = "product_card mt-4">
               <div class = "imgBx">
-                  <%= cl_image_tag product.photos.first.key, height: 300, crop: :fill %>
+                  <%= cl_image_tag product.photos.first.key %>
               </div>
               <div class="contentBx">
-                <h3><%= link_to product.title , product_path(product)%></h3>
+                <p><%= link_to product.title , product_path(product), class: "link" %></p>
 
                 <div class = "user">
-                  <h4>Offer from:</h4>
+                  <h6>Offer from:</h6>
                   <p><%= product.user.name %></p>
                 </div>
                 <div class = "quality">
-                  <h4>Quality:</h4>
+                  <h6>Quality:</h6>
                   <p><%= product.quality %></p>
                 </div>
               </div>
