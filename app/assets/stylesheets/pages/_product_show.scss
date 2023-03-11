@@ -6,7 +6,7 @@ button {
 .product-up {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  flex-grow: 1;
   padding: 0px;
   gap: 59px;
 }
@@ -18,8 +18,8 @@ button {
   padding: 0px;
   gap: 25px;
 
-  width: 567px;
-  height: 488.09px;
+  // width: 567px;
+  // height: 488.09px;
 }
 
 
@@ -44,6 +44,7 @@ button {
 .page-right {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   align-items: center;
   padding: 0px;
   // gap: 27px;
@@ -62,3 +63,7 @@ button {
 //   // width: 404px;
 //   // height: 187px;
 // }
+
+.accordion {
+  width: 100%;
+}

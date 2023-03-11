@@ -205,7 +205,11 @@
         </div>
       </div>
       <div class="product-map">
-
+        <div style="width: 300px; height: 300px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
       <div class="barter-btn">
 
