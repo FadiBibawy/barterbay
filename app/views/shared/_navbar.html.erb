@@ -9,19 +9,19 @@
   <%# login and register button %>
     <div class = "aregistration">
       <%# login %>
-      <div class = "aregistration link" ><%= link_to "Login", new_user_session_path%>
+      <div class = "aregistration link" ><%= link_to "Login", new_user_session_path, class: "link"%>
       </div>
       <%# register button %>
       <div class = "ageneralbutton">
       <%# text %>
-        <div><span style="color:#fFFFFF"><%= link_to "Register", new_user_registration_path%></span></div>
+        <div><span style="color:#fFFFFF"><%= link_to "Register", new_user_registration_path, class: "link2"%></span></div>
         <% else %>
         <%# show the nav with user info %>
         <div  class="acurrentusernav" >
         <%# home link  %>
-        <div class = "aregistration" ><%= link_to "Home", root_path %>
+        <div class = "aregistration" ><%= link_to "Home", root_path, class: "link" %>
         <%# message link %>
-        <div class = "aregistration" ><%= link_to "Message", '#' %>
+        <div class = "aregistration" ><%= link_to "Message", '#', class: "link" %>
         <%# avatar with the profil link %>
         <li class="nav-item dropdown d-flex align-items-center">
             <% if current_user.photo.key %>
