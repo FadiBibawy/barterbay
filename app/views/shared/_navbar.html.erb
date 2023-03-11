@@ -18,7 +18,9 @@
         <% else %>
         <%# show the nav with user info %>
         <div  class="acurrentusernav" >
+        <div><%= link_to "Add a Product", new_product_path, class: "link3" %>&nbsp&nbsp&nbsp</div>
         <%# home link  %>
+
         <div class = "aregistration" ><%= link_to "Home", root_path, class: "link" %>
         <%# message link %>
         <div class = "aregistration" ><%= link_to "Message", '#', class: "link" %>

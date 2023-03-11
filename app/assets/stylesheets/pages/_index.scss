@@ -1,3 +1,22 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "product_show";
+
+.new-search {
+width: 589px;
+  height: 40px;
+
+  background: rgba(217, 217, 217, 0.88);
+  border-radius: 8px;
+
+}
+
+.abtn {
+  background: #3C9379;
+  border-radius: 8px;
+    width: 101px;
+      height: 40px;
+      left: 897px;
+      top: 441px;
+
+}
