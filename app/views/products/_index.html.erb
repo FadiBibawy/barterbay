@@ -4,15 +4,15 @@
       <h3>Products</h3>
       <div class="btn btn-success"><%= link_to 'add product', new_product_path %></div>
     </div>
-
+<%# search bar %>
     <div class="col-sm-8">
       <%= form_with url: products_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
-          class: "form-control",
+          class: "form-control new-search",
           placeholder: "Find a product or address"
         %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <%= submit_tag "Search", class: "abtn" %>
       <% end %>
 
       <div id="products">
