@@ -24,8 +24,10 @@
                   <%= cl_image_tag product.photos.first.key %>
               </div>
               <div class="contentBx">
-                <p><%= link_to product.title , product_path(product), class: "link" %></p>
-
+                  <p><%= link_to product.title , product_path(product), class: "link" %></p>
+                  <div class="overlay">
+                    <p><%= product.title %></p>
+                  </div>
                 <div class = "user">
                   <h6>Offer from:</h6>
                   <p><%= product.user.name %></p>
