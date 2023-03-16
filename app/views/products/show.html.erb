@@ -87,6 +87,11 @@
       </div>
     </div>
     <div class="page-right col-8">
+      <div class="">
+        <% if @product.user != current_user %>
+          <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
+        <% end %>
+      </div>
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -134,11 +139,7 @@
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
-      <div class="">
-        <% if @product.user != current_user %>
-          <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
-        <% end %>
-      </div>
+
       <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
 
       <% if @product.user == current_user %>
