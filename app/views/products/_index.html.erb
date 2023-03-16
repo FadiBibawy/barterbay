@@ -14,11 +14,14 @@
         %>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
+    </div>
+  </div>
+</div>
 
       <div id="products">
       <div class="row">
         <% @products.each do |product| %>
-          <div class="col-sm-1 col-md-3 col-lg-4">
+          <div class="col-sm-6 col-md-4 col-lg-3">
             <div class = "product_card mt-4">
               <div class = "imgBx">
                   <%= cl_image_tag product.photos.first.key %>
@@ -42,6 +45,3 @@
         <% end %>
       </div>
       </div>
-    </div>
-  </div>
-</div>

@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-*
 .product_card {
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 10px;
   border-radius: 3px;
-  box-shadow: 0 0 5px rgb(230,230,230);
+  box-shadow: 0 0 5px rgb(230, 230, 230);
   text-align: center;
-  border: 1px solid rgb(230,230,230);
+  border: 1px solid rgb(230, 230, 230);
 }
 
 .user p {
@@ -26,19 +26,30 @@
 }
 
 .imgBx {
-  display: inline-block;
   position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
 }
 
 .imgBx img {
-  max-height: 100%;
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   filter: grayscale(50%);
   -webkit-filter: grayscale(50%);
   -moz-filter: grayscale(50%);
+}
+
+.contentBx {
+  position: relative;
+  padding: 10px;
 }
 
 .imgBx img:hover  {
