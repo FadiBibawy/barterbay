@@ -1,45 +1,60 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-sm-8  d-flex justify-content-between">
-      <h3>Products</h3>
-      <div class="btn btn-success"><%= link_to 'add product', new_product_path %></div>
-    </div>
-<%# search bar %>
-    <div class="col-sm-8">
-      <%= form_with url: products_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control new-search",
-          placeholder: "Find a product or address"
-        %>
-        <%= submit_tag "Search", class: "abtn" %>
-      <% end %>
+<div class="container mt-4">
 
-      <div id="products">
-      <div class="row">
-        <% @products.each do |product| %>
-          <div class="col-sm-1 col-md-3 col-lg-4">
-            <div class = "product_card mt-4">
-              <div class = "imgBx">
-                  <%= cl_image_tag product.photos.first.key %>
-              </div>
-              <div class="contentBx">
-                <p><%= link_to product.title , product_path(product), class: "link" %></p>
+<%# Search bar %>
 
-                <div class = "user">
-                  <h6>Offer from:</h6>
-                  <p><%= product.user.name %></p>
-                </div>
-                <div class = "quality">
-                  <h6>Quality:</h6>
-                  <p><%= product.quality %></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      </div>
+  <div class="d-flex justify-content-center">
+    <%= form_with url: products_path, method: :get, class: "d-flex justify-content-center" do |form| %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control new-search",
+        placeholder: "Find a product or address"
+      %>
+      <%= submit_tag "Search", class: "abtn" %>
+    <% end %>
+    <div class="d-flex justify-content-center align-center ms-3">
+      <%= link_to 'Add a product', new_product_path, class: 'abtn' %>
     </div>
   </div>
-</div>
+
+<%# Search bar %>
+
+<%# Display Products product_card %>
+  <div id="products" data-controller="product-filter">
+    <label>
+      <%= radio_button_tag :category, "goods", false, data: { action: "change->product-filter#index" } %>
+      Goods
+    </label>
+
+    <label>
+      <%= radio_button_tag :category, "services", false, data: { action: "change->product-filter#index" } %>
+      Services
+    </label>
+
+    <%= button_tag "Remove Filters", data: { action: "click->product-filter#reset" } %>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-sm-1 col-md-3 col-lg-4" style="width: 17rem;" data-product-filter-target="products">
+          <div class = "mt-4 card">
+            <% if product.photos.first %>
+            <div class = "imgBx">
+                <%= cl_image_tag product.photos.first.key, class: 'card-img-top', style:"width: 300px" %>
+            </div>
+            <%end%>
+            <div class="text-center card-body">
+              <p><%= link_to product.title.capitalize , product_path(product), class: "link" %></p>
+              <div>
+                <h6><strong>Offer from:</strong></h6>
+                <p><%= product.user.name %></p>
+              </div> <%# from %>
+              <div>
+                <h6><strong>Quality:</strong></h6>
+                <p><%= product.quality.capitalize %></p>
+              </div> <%# quality %>
+            </div> <%# card body %>
+          </div> <%# card div %>
+        </div> <%# card container %>
+      <% end %>
+    </div> <%# row %>
+  </div> <%# products div %>
+
+</div> <%# this is the main container %>

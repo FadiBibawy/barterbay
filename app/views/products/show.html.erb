@@ -2,66 +2,14 @@
 
 <%# Code to display the product details and its images in a carousel %>
 
-
-    <%= @product.photos.each_with_index do |photo, index| %>
-
-      <button data-bs-toggle="modal" data-bs-target="#pictureModal-<%=index%>" data-controller="modal">
-        <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#pictureModal-#{index}", data_controller:"modal" %>
-      </button>
-
-      <div class="modal fade" id="pictureModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="modal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <%= cl_image_tag photo.key, height: 500, width: 700, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#exampleModal", data_controller:"modal" %>
-          </div>
-        </div>
-      </div>
-
-
-    <% end%>
-
-
-
-    <%# Display the remaining photos in a carousel %>
-    <% if @product.photos.size > 1 %>
-      <div class="col-md-6">
-        <div id="productCarousel" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <% @product.photos.each_with_index do |photo, index| %>
-              <li data-target="#productCarousel" data-slide-to="<%= index %>" <%= "class='active'" if index == 0 %>></li>
-            <% end %>
-          </ol>
-          <div class="carousel-inner">
-            <% @product.photos.each_with_index do |photo, index| %>
-              <div class="carousel-item <%= "active" if index == 0 %>">
-                <%= image_tag photo.url, class: "d-block w-100" %>
-              </div>
-            <% end %>
-          </div>
-          <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-
-          <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    <% end %>
-
-
-
-
-
-
 <div class="container">
   <div class="product-up row flex-nowrap">
     <div class="page-left col-4">
       <%# <div class="main-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @product.photos.first.key, height: 500, crop: :fill %>
       <div class="main-pic">
+        <%if @product.photos.first %>
         <%= cl_image_tag  @product.photos.first.key, height: 400, crop: :fill%>
+        <%end%>
         <div class="pic-title">
           <h4><strong><%= @product.title %></strong></h4>
           <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
@@ -70,15 +18,18 @@
 
       <div class="small-pics">
         <% @product.photos.each_with_index do |photo, index| %>
-
+          <%if photo %>
           <button data-bs-toggle="modal" data-bs-target="#pictureModal-<%=index%>" data-controller="modal">
             <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#pictureModal-#{index}", data_controller:"modal" %>
           </button>
+          <%end%>
 
           <div class="modal fade" id="pictureModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="modal">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
+              <%if photo %>
                 <%= cl_image_tag photo.key, height: 500, width: 700, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#exampleModal", data_controller:"modal" %>
+               <%end%>
               </div>
             </div>
           </div>
