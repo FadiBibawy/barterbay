@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 *
 .product_card {
-  width: 250px;
   border-radius: 3px;
   box-shadow: 0 0 5px rgb(230,230,230);
-  text-align: center;
   border: 1px solid rgb(230,230,230);
 }
 
@@ -18,11 +16,6 @@
   font-size: 14px;
 }
 
-img{
-  max-height: 100%;
-  max-width: 100%;
-}
-
 .link{
   
   text-decoration: none;
@@ -31,38 +24,27 @@ img{
 }
 
 .imgBx {
-  display: inline-block;
   position: relative;
+  overflow: hidden;
 }
 
 .imgBx img {
   transition: all 0.2s;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
+  filter: grayscale(50%);
+  width: 100%;
 }
 
-.imgBx img {
-  filter: grayscale(50%);
-  -webkit-filter: grayscale(50%);
-  -moz-filter: grayscale(50%);
-}
 .imgBx img:hover {
   filter: grayscale(0%);
-  -webkit-filter: grayscale(0%);
-  -moz-filter: grayscale(0%);
   transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  -moz-transform: scale(1.05);
   outline: 1px solid rgb(230, 230, 230);
+  cursor: pointer;
 }
 
 .imgBx:hover + .contentBx {
   margin-top: 10px;
-  -webkit-transition: all 0.2s;
 }
 
 .imgBx:hover + .contentBx .product_card {
   transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  -moz-transform: scale(1.05);
 }

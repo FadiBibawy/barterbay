@@ -16,5 +16,8 @@ application.register("map", MapController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import ProductFilterController from "./product_filter_controller"
+application.register("product-filter", ProductFilterController)
+
 import ProductFormController from "./product_form_controller"
 application.register("product-form", ProductFormController)

@@ -4,20 +4,18 @@
 @import "user";
 
 .new-search {
-width: 589px;
+  width: 589px;
   height: 40px;
-
   background: rgba(217, 217, 217, 0.88);
   border-radius: 8px;
-
 }
 
 .abtn {
   background: #3C9379;
+  border: none;
+  padding: 10px 20px;
   border-radius: 8px;
-    width: 101px;
-      height: 40px;
-      left: 897px;
-      top: 441px;
-
+  color: #fff;
+  margin-left: 10px;
+  text-decoration: none;
 }
