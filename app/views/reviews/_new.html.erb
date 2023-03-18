@@ -19,7 +19,7 @@
     <%= hidden_field_tag :previous_request, request.referer %>
 
     <div class="field form-group">
-      <%= f.label :rating, "Give #{@user.first_name.capitalize} a rating!" %>
+      <%= f.label :rating, "Rate #{@user.first_name.capitalize}!" %>
       <div class="rating">
         <%= f.collection_radio_buttons(:rating, [[5],[4],[3],[2],[1]], :first, :last) do |star| %>
           <%= star.radio_button %>
@@ -28,9 +28,9 @@
       </div>
     </div>
     <div class="field form-group">
-      <%= f.label :content, "Leave a review" %>
+      <%# <%= f.label :content, "" %>
       <%= f.text_area :content, class: "form-control",
-                          placeholder: "Tell people about your experience" %>
+                          placeholder: "Tell people about #{@user.first_name.capitalize}" %>
     </div>
 
     <div class="actions">

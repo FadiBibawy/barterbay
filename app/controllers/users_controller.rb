@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def set_rating
     @user_rating = 0
     if @user.rated_reviews.size.zero?
-      @user_rating = "No one rated #{@user.username}"
+      @user_rating = 0
     else
       @user.rated_reviews.each do |review|
         @user_rating += review.rating
