@@ -1,19 +1,16 @@
-
-
 <%# Code to display the product details and its images in a carousel %>
-
 <div class="container">
-  <div class="product-up row flex-nowrap">
+    <div class="pic-title">
+      <h4><strong><%= @product.title %></strong></h4>
+      <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
+    </div>
+    <div class="product-up row flex-nowrap">
     <div class="page-left col-4">
       <%# <div class="main-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @product.photos.first.key, height: 500, crop: :fill %>
       <div class="main-pic">
         <%if @product.photos.first %>
         <%= cl_image_tag  @product.photos.first.key, height: 400, crop: :fill%>
         <%end%>
-        <div class="pic-title">
-          <h4><strong><%= @product.title %></strong></h4>
-          <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
-        </div>
       </div>
 
       <div class="small-pics">
@@ -23,7 +20,6 @@
             <%= cl_image_tag photo.key, height: 50, width: 80, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#pictureModal-#{index}", data_controller:"modal" %>
           </button>
           <%end%>
-
           <div class="modal fade" id="pictureModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-controller="modal">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -34,15 +30,9 @@
             </div>
           </div>
         <%end%>
-
       </div>
     </div>
-    <div class="page-right col-8">
-      <div class="">
-        <% if @product.user != current_user %>
-          <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
-        <% end %>
-      </div>
+    <div class="page-right col-6">
       <div class="accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -96,9 +86,14 @@
             </div>
           </div>
         </div>
+        <div class="barter_button">
+          <% if @product.user != current_user %>
+            <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
+          <% end %>
+        </div>
       </div>
       <div class="product-map">
-        <div style="width: 300px; height: 300px;"
+        <div style="max-width: 300px; height: 300px;"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
