@@ -18,12 +18,11 @@
         <% else %>
         <%# show the nav with user info %>
         <div  class="acurrentusernav" >
-        <div><%= link_to "Add a Product", new_product_path, class: "link3" %>&nbsp&nbsp&nbsp</div>
+        <div><%= link_to 'Add Product', new_product_path, class: "link" %></div>
         <%# home link  %>
-
-        <div class = "aregistration" ><%= link_to "Home", root_path, class: "link" %>
+        <div><%= link_to "Home", root_path, class: "link" %></div>
         <%# message link %>
-        <div class = "aregistration" ><%= link_to "Message", '#', class: "link" %>
+
         <%# avatar with the profil link %>
         <li class="nav-item dropdown d-flex align-items-center">
             <% if current_user.photo.key %>
@@ -35,7 +34,6 @@
             <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
