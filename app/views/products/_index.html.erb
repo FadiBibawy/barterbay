@@ -37,7 +37,7 @@
           <div class = "mt-4 card">
             <% if product.photos.first %>
             <div class = "imgBx">
-                <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
+                <%= cl_image_tag product.photos.first.key, class: 'card-img-top', style:"width: 300px" %>
             </div>
             <%end%>
             <div class="text-center card-body">

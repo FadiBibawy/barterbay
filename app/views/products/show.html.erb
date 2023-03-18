@@ -29,7 +29,7 @@
               <div class="modal-content">
               <%if photo %>
                 <%= cl_image_tag photo.key, height: 500, width: 700, crop: :fill, data_bs_toggle:"modal", data_bs_target:"#exampleModal", data_controller:"modal" %>
-               <%end%>
+              <%end%>
               </div>
             </div>
           </div>
@@ -78,7 +78,21 @@
           </h2>
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
             <div class="accordion-body">
-            <%= @product.user.email %> review not available for that user
+              <% if @product.user.rated_reviews.blank? %>
+                <h5 class='text-center'> <strong><%= @product.user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
+              <% else %>
+                <p>Overall Rating:</p>
+                <p><%= @user_rating %></p>
+                <hr>
+                <p><strong>Reviews:</strong></p>
+                <ul class="list-group">
+                  <% @product.user.rated_reviews.each do |review| %>
+                    <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+                      <strong><%= '⭐' * review.rating %></strong>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
             </div>
           </div>
         </div>
