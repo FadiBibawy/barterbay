@@ -12,7 +12,7 @@
 }
 
 .anavbar{
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,8 +45,7 @@
   align-items: center;
   padding: 0px;
   gap: 20px;
-
-  width: 165px;
+  width: 110px;
   height: 40px;
 
 }
@@ -74,6 +73,8 @@ border-radius: 8px;
   align-items: center;
   padding: 0px;
   gap: 21px;
+  font-size: 16px;
+
 }
 .link {
   color: #000000;
@@ -89,4 +90,3 @@ border-radius: 8px;
   color: #3C9379;
   text-decoration: none;
 font-weight: 800;}
-
