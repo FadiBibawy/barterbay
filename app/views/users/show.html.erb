@@ -1,61 +1,77 @@
 <div class="container">
+    <h1 class='display-6 text-center mt-3'><%= @user.name %>' Profile</h1>
+      <div class='px-2 py-4 d-flex justify-content-between align-items-center'>
+        <h4><strong>Personal details:</strong></h4>
+        <p class='m-0'><mark>Username:</mark> <%= @user.username %></p>
+        <p class='m-0'><mark>Email:</mark> <%= @user.email %></p>
+        <% if @user == current_user %>
+          <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-warning text-white' %>
+        <% end %>
+    </div> <%# edit div %>
 
-  <h1><%= @user.name %>' Profile</h1>
-  <p>username: <%= @user.username %></p>
-  <% if @user == current_user %>
-    <%= link_to 'Edit Profile', edit_user_registration_path %>
-  <% end %>
-  <hr>
-
-
+<div class='px-2 py-4'>
     <% if @availabe_products.blank? %>
       <%= @user == current_user ? 'You have' : "#{@user.username} has" %> no available products!
     <% else %>
-    <p><strong>Products:</strong></p>
-      <p><% @availabe_products.each do |product|%></p>
-        <%= link_to product.title, product_path(product) %>
-      <p><% end %></p>
+    <h4 class='mb-4'><strong>Products:</strong></h4>
+    <div class='list-group'>
+      <% @availabe_products.each do |product|%>
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <%= link_to product.title.capitalize, product_path(product),
+          class: 'text-decoration-none' %>
+        <span class="badge bg-primary rounded-pill"><%=product.offers.count%> Offer(s)</span>
+      </div>
+      <% end %>
+    </div>
     <% end %>
 
-  <br>
-  <hr>
+</div>
+
+<h4><strong>Created offers:</strong></h4>
+<div class='px-2 py-4'>
   <% if @user == current_user %>
-    <p><strong>You offered:</strong></p>
+    <ul class='list-group'>
       <% @user.offers.each do |offer|%>
-        <div class="div">
-          <strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
+      <li class='bg-light list-group-item d-flex justify-content-between align-items-center'>
+          <p class='m-0'>Your <strong><%= offer.offered_product.title %></strong> in exchange for:
+            <strong><%= offer.product.title %></strong>
+          </p>
           <% if offer.accepted == true %>
-            <%= link_to 'Offer accepted!', offer_path(offer), class: 'btn btn-success' %>
+            <%= link_to 'Offer accepted!', offer_path(offer), class: 'btn btn-success text-white' %>
           <% elsif offer.refused == true %>
-            <%= link_to 'Offer refused!', offer_path(offer), class: 'btn btn-danger' %>
+            <%= link_to 'Offer refused!', offer_path(offer), class: 'btn btn-danger text-white' %>
           <% else %>
             <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
           <% end %>
-          </p>
-        </div>
+        </li>
       <% end %>
-    <hr>
+    </ul>
+  </div>
 
-    <p><strong>You are offered:</strong></p>
+<h4><strong>Received offers:</strong></h4>
+<div class='px-2 py-4'>
+    <ul class='list-group'>
       <% @user.received_offers.each do |offer|%>
-        <div class="div">
-          <strong><%= offer.offered_product.title %></strong> in exchange for: <strong><%= offer.product.title %></strong>
-          <% if offer.accepted == true %>
-            <%= link_to 'Offer accepted!', offer_path(offer), class: 'btn btn-success' %>
-          <% elsif offer.refused == true %>
-            <%= link_to 'Offer refused!', offer_path(offer), class: 'btn btn-danger' %>
-          <% else %>
-            <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary' %>
-          <% end %>
+      <li class='bg-light list-group-item d-flex justify-content-between align-items-center'>
+          <p class='m-0'><strong><%= offer.offered_product.title.capitalize %></strong>
+            in exchange for your: <strong><%= offer.product.title.capitalize %></strong>
           </p>
-        </div>
+          <% if offer.accepted == true %>
+            <%= link_to 'Offer accepted!', offer_path(offer), class: 'btn btn-success text-white' %>
+          <% elsif offer.refused == true %>
+            <%= link_to 'Offer refused!', offer_path(offer), class: 'btn btn-danger text-white' %>
+          <% else %>
+            <%= link_to 'Show the offer', offer_path(offer), class: 'btn btn-primary text-white' %>
+          <% end %>
+        </li>
       <% end %>
+    </ul>
   <% end %>
-  <br>
-  <hr>
-
+  </div>
+<hr>
+<div class='bg-light p-4'>
     <% if @user.rated_reviews.blank? %>
-      <strong><%= @user.first_name.capitalize %> has no reviews!</strong>
+      <h5 class='text-center'> <strong><%= @user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
     <% else %>
       <p>Overall Rating:</p>
       <p><%= @user_rating %></p>
@@ -69,9 +85,8 @@
           </li>
         <% end %>
       </ul>
-      <br>
     <% end %>
-
+</div>
 
 
 
