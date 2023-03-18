@@ -123,3 +123,14 @@ button {
   // left: 370px;
   // top: 16px;
 }
+
+.barter-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.barter_button {
+  margin-left: 10px;
+}

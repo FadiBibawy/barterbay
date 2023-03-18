@@ -2,7 +2,14 @@
 <div class="container">
     <div class="pic-title">
       <h4><strong><%= @product.title %></strong></h4>
-      <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
+        <div class="barter-button-container">
+        <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
+        <div class="barter_button">
+          <% if @product.user != current_user %>
+            <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
+          <% end %>
+          </div>
+        </div>
     </div>
     <div class="product-up row flex-nowrap">
     <div class="page-left col-4">
@@ -86,14 +93,9 @@
             </div>
           </div>
         </div>
-        <div class="barter_button">
-          <% if @product.user != current_user %>
-            <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
-          <% end %>
-        </div>
       </div>
-      <div class="product-map">
-        <div style="max-width: 300px; height: 300px;"
+      <div class="product-map" style="width: 100%">
+        <div style="width: 100%; height: 300px;"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
