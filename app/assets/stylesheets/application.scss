@@ -12,14 +12,12 @@
 @import "components/index";
 @import "pages/index";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 a:hover, button:hover {
   color: #000000 !important;
-}
-
-body {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
 }
