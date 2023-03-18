@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
       @products = @products.search(params[:query])
     end
 
+
     if @products.empty?
       flash[:notice] = "There are no products!"
     end
@@ -69,5 +70,9 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :description, :quality, :category, :address, :subcategory, photos: [])
+  end
+
+  def filter_category
+    @products = @products.filter_category(params[:query])
   end
 end
