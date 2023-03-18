@@ -19,4 +19,11 @@ class Product < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  pg_search_scope :filter_category,
+                  against: [:category],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
 end
