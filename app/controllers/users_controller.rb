@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @review = Review.new
     @availabe_products = @user.products.where(bartered: false)
     @bartered_products = @user.products.where(bartered: true)
+
+    @received_offers_count = @user.received_offers.where(deal: true).count
+    @made_offers_count = @user.offers.where(deal: true).count
+    @offers_count = @received_offers_count + @made_offers_count
+
   end
 
   private
