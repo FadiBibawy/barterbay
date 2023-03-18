@@ -33,11 +33,11 @@
     <%= button_tag "Remove Filters", data: { action: "click->product-filter#reset" } %>
     <div class="row">
       <% @products.each do |product| %>
-        <div class="col-sm-1 col-md-3 col-lg-4" style="width: 17rem;" data-product-filter-target="products">
+        <div class="col-sm-1 col-md-6 col-lg-3" data-product-filter-target="products">
           <div class = "mt-4 card">
             <% if product.photos.first %>
             <div class = "imgBx">
-                <%= cl_image_tag product.photos.first.key, class: 'card-img-top', style:"width: 300px" %>
+                <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
             </div>
             <%end%>
             <div class="text-center card-body">
