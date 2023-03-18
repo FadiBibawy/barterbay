@@ -107,11 +107,15 @@
             <%# <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail"> %>
             <%= cl_image_tag current_user.photo.key, width:"130", class: "rounded mb-2 img-thumbnail" %>
 
-            <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
             <div class="media-body mb-5 text-white">
-              <h4 class="mt-0 mb-0">Mark Williams</h4>
-              <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+              <h4 class="mt-0 mb-0"><%= @user.name %></h4>
+              <%# <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p> %>
             </div>
+            </div>
+            <% if @user == current_user %>
+
+              <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-outline-dark btn-sm btn-block' %>
+            <% end %>
           </div>
         </div>
 
@@ -134,7 +138,7 @@
 
         <div class="py-4 px-4">
           <div class="d-flex align-items-center justify-content-between mb-3">
-            <h5 class="mb-0">Recent photos</h5>
+            <h5 class="mb-0"><strong><%= @user.first_name.capitalize %></strong>' Products</h5>
             <a href="#" class="btn btn-link text-muted">Show all</a>
           </div>
           <div class="row">
