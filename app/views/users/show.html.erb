@@ -125,8 +125,25 @@
         <div class="bg-light p-4 d-flex justify-content-end text-center">
           <ul class="list-inline mb-0">
             <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.products.count %></h5><small class="text-muted"> <i class="fa-brands fa-product-hunt"></i> Products</small> </li>
-            <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.rated_reviews.count %></h5><small class="text-muted"> <i class="fa-solid fa-star"></i> Reviews</small> </li>
             <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @offers_count %></h5><small class="text-muted"> <i class="fa-regular fa-handshake"></i> Successful deals</small> </li>
+            <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.rated_reviews.count %></h5><small class="text-muted"> <i class="fa-solid fa-star"></i> Reviews</small> </li>
+            <li class="list-inline-item">
+              <h5 class="font-weight-bold mb-0 d-block"><%= '⭐' * @user_rating %></h5>
+              <small class="text-muted">
+              <%# putting an emoji face according the the user's overall rating %>
+                <% if @user_rating >= 4 %>
+                  <i class="fa-regular fa-face-smile"></i>
+                <% elsif @user_rating >= 3 %>
+                  <i class="fa-regular fa-face-rolling-eyes"></i>
+                <% elsif @user_rating >= 2 %>
+                  <i class="fa-regular fa-face-frown-open"></i>
+                <% elsif @user_rating >= 1 %>
+                  <i class="fa-regular fa-face-frown-open"></i>
+                <% elsif @user_rating >= 0 %>
+                  <i class="fa-regular fa-face-frown"></i>
+                <% end %>
+                Overall Rating</small>
+            </li>
           </ul>
         </div>
 
@@ -184,32 +201,10 @@
                 <p><strong>Reviews:</strong></p>
                 <ul class="list-group">
                   <% @user.rated_reviews.each do |review| %>
-                    <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+                    <li class="list-group-item">
+                      <%= link_to review.reviewer.username, user_path(review.reviewer) %>:
                       <strong><%= '⭐' * review.rating %></strong>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
-          </div>
-        </div>
-
-        <div class="px-4 py-3">
-
-          <h5 class="mb-3"><strong><%= @user.first_name.capitalize %></strong>' Reviews</h5>
-
-          <div class='bg-light p-4'>
-              <% if @user.rated_reviews.blank? %>
-                <h5 class='text-center'> <strong><%= @user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
-              <% else %>
-                <p>Overall Rating:</p>
-                <p><%= @user_rating %></p>
-
-                <hr>
-                <p><strong>Reviews:</strong></p>
-                <ul class="list-group">
-                  <% @user.rated_reviews.each do |review| %>
-                    <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
-                      <strong><%= '⭐' * review.rating %></strong>
+                      <%= review.content %>
                     </li>
                   <% end %>
                 </ul>
