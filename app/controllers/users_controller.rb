@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @received_offers_count = @user.received_offers.where(deal: true).count
     @made_offers_count = @user.offers.where(deal: true).count
     @offers_count = @received_offers_count + @made_offers_count
-
+    @products = @user.products
   end
 
   private
