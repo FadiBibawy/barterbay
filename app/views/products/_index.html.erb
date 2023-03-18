@@ -31,6 +31,7 @@
     </label>
 
     <%= button_tag "Remove Filters", data: { action: "click->product-filter#reset" } %>
+
     <div class="row">
       <% @products.each do |product| %>
         <div class="col-sm-1 col-md-6 col-lg-3" data-product-filter-target="products">
