@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 
       @user_rating /= @user.rated_reviews.size.to_f
       @user_rating = (@user_rating * 2.0).round / 2.0
-
     end
   end
 end
