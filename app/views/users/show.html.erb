@@ -140,6 +140,9 @@
         </div>
 
         <div class="py-4 px-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="mb-0"><strong><%= @user.first_name.capitalize %></strong>' Products</h5>
+          </div>
           <div class="row">
             <% @products.each do |product| %>
               <div class="col-sm-1 col-md-6 col-lg-3" data-product-filter-target="products">
@@ -164,6 +167,30 @@
               </div> <%# card container %>
             <% end %>
           </div> <%# row %>
+        </div>
+
+        <div class="px-4 py-3">
+
+          <h5 class="mb-3"><strong><%= @user.first_name.capitalize %></strong>' Reviews</h5>
+
+          <div class='bg-light p-4'>
+              <% if @user.rated_reviews.blank? %>
+                <h5 class='text-center'> <strong><%= @user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
+              <% else %>
+                <p>Overall Rating:</p>
+                <p><%= @user_rating %></p>
+
+                <hr>
+                <p><strong>Reviews:</strong></p>
+                <ul class="list-group">
+                  <% @user.rated_reviews.each do |review| %>
+                    <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+                      <strong><%= '⭐' * review.rating %></strong>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+          </div>
         </div>
 
         <div class="px-4 py-3">
