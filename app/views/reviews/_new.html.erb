@@ -1,39 +1,39 @@
-  <h3>Add a review</h3>
+  <%# <h5>Add a review</h5> %>
 
-  <%# <%= simple_form_for [@user, @review] do |f| %> %>
-
-
+  <%# <%= simple_form_for [@user, @review] do |f| %>
 
 
 
-    <%# <%= f.input :content %> %>
-    <%# <%= f.input :rating  %> %>
-
-    <%# <%= f.submit "Submit review", class: "btn btn-primary"%> %>
-  <%# <% end %> %>
 
 
+    <%# <%= f.input :content %>
+    <%# <%= f.input :rating  %>
 
+    <%# <%= f.submit "Submit review", class: "btn btn-primary"%>
+  <%# <% end %>
+
+
+  <br>
 
   <%= form_with model: [@user, @review], local:true do |f| %>
-  <%= hidden_field_tag :previous_request, request.referer %>
+    <%= hidden_field_tag :previous_request, request.referer %>
 
-  <div class="field form-group">
-  <%= f.label :rating, "What's your overall rating?" %>
-    <div class="rating">
-      <%= f.collection_radio_buttons(:rating, [[5],[4],[3],[2],[1]], :first, :last) do |star| %>
-        <%= star.radio_button %>
-        <%= star.label(class: "text-white") %>
-      <% end %>
+    <div class="field form-group">
+      <%= f.label :rating, "Give #{@user.first_name.capitalize} a rating!" %>
+      <div class="rating">
+        <%= f.collection_radio_buttons(:rating, [[5],[4],[3],[2],[1]], :first, :last) do |star| %>
+          <%= star.radio_button %>
+          <%= star.label(class: "text-white") %>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="field form-group">
-    <%= f.label :content, "Leave a review" %>
-    <%= f.text_area :content, class: "form-control",
-                        placeholder: "Tell people about your experience" %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :content, "Leave a review" %>
+      <%= f.text_area :content, class: "form-control",
+                          placeholder: "Tell people about your experience" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Submit your review", class: "btn btn-primary" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "Submit your review", class: "btn btn-primary" %>
+    </div>
+  <% end %>

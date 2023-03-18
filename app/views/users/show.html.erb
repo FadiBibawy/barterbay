@@ -190,25 +190,24 @@
 
           <h5 class="mb-3"><strong><%= @user.first_name.capitalize %></strong>' Reviews</h5>
 
-          <div class='bg-light p-4'>
-              <% if @user.rated_reviews.blank? %>
-                <h5 class='text-center'> <strong><%= @user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
-              <% else %>
-                <p>Overall Rating:</p>
-                <p><%= @user_rating %></p>
-
-                <hr>
-                <p><strong>Reviews:</strong></p>
-                <ul class="list-group">
-                  <% @user.rated_reviews.each do |review| %>
-                    <li class="list-group-item">
-                      <%= link_to review.reviewer.username, user_path(review.reviewer) %>:
-                      <strong><%= '⭐' * review.rating %></strong>
-                      <%= review.content %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
+          <div class='rounded shadow-sm bg-light p-4'>
+            <% if @user.rated_reviews.blank? %>
+              <h5 class='text-center'> <strong><%= @user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
+            <% else %>
+              <ul class="list-group">
+                <% @user.rated_reviews.each do |review| %>
+                  <li class="list-group-item">
+                    <%= link_to review.reviewer.username, user_path(review.reviewer) %>:
+                    <strong><%= '⭐' * review.rating %></strong>
+                    <%= review.content %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+          <br>
+          <div class="rounded shadow-sm bg-light px-4 pb-4">
+            <%= render "reviews/new" unless @user == current_user %>
           </div>
         </div>
       </div>
