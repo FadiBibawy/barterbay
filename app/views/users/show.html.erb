@@ -105,13 +105,41 @@
   <div class="col-md-12 col-sm-4 mx-auto"> <!-- Profile widget -->
     <div class="bg-white shadow rounded overflow-hidden">
       <div class="px-4 pt-0 pb-4 cover">
-        <div class="media align-items-end profile-head">
+        <div class="media align-items-end profile-head"></div>
           <div class="profile mr-3">
             <%# <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail"> %>
-            <%= cl_image_tag current_user.photo.key, width:"130", class: "rounded mb-2 img-thumbnail" %>
+            <%= cl_image_tag @user.photo.key, width:"130", class: "rounded mb-2 img-thumbnail" %>
 
-            <div class="media-body mb-5 text-white">
+            <div class="media-body d-flex justify-content-between align-items-center mb-2 text-white">
               <h4 class="mt-0 mb-0"><%= @user.name %></h4>
+
+
+              <div class="p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.products.count %></h5><small class="text-muted"> <i class="fa-brands fa-product-hunt"></i> Products</small> </li>
+                  <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @offers_count %></h5><small class="text-muted"> <i class="fa-regular fa-handshake"></i> Successful deals</small> </li>
+                  <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.rated_reviews.count %></h5><small class="text-muted"> <i class="fa-solid fa-star"></i> Reviews</small> </li>
+                  <li class="list-inline-item">
+                    <h5 class="font-weight-bold mb-0 d-block"><%= '⭐' * @user_rating %></h5>
+                    <small class="text-muted">
+                    <%# putting an emoji face according the the user's overall rating %>
+                      <% if @user_rating >= 4 %>
+                        <i class="fa-regular fa-face-smile"></i>
+                      <% elsif @user_rating >= 3 %>
+                        <i class="fa-regular fa-face-rolling-eyes"></i>
+                      <% elsif @user_rating >= 2 %>
+                        <i class="fa-regular fa-face-frown-open"></i>
+                      <% elsif @user_rating >= 1 %>
+                        <i class="fa-regular fa-face-frown-open"></i>
+                      <% elsif @user_rating >= 0 %>
+                        <i class="fa-regular fa-face-frown"></i>
+                      <% end %>
+                      Overall Rating</small>
+                  </li>
+                </ul>
+              </div>
+
+
               <%# <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p> %>
             </div>
             </div>
@@ -122,30 +150,7 @@
           </div>
         </div>
 
-        <div class="bg-light p-4 d-flex justify-content-end text-center">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.products.count %></h5><small class="text-muted"> <i class="fa-brands fa-product-hunt"></i> Products</small> </li>
-            <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @offers_count %></h5><small class="text-muted"> <i class="fa-regular fa-handshake"></i> Successful deals</small> </li>
-            <li class="list-inline-item"> <h5 class="font-weight-bold mb-0 d-block"><%= @user.rated_reviews.count %></h5><small class="text-muted"> <i class="fa-solid fa-star"></i> Reviews</small> </li>
-            <li class="list-inline-item">
-              <h5 class="font-weight-bold mb-0 d-block"><%= '⭐' * @user_rating %></h5>
-              <small class="text-muted">
-              <%# putting an emoji face according the the user's overall rating %>
-                <% if @user_rating >= 4 %>
-                  <i class="fa-regular fa-face-smile"></i>
-                <% elsif @user_rating >= 3 %>
-                  <i class="fa-regular fa-face-rolling-eyes"></i>
-                <% elsif @user_rating >= 2 %>
-                  <i class="fa-regular fa-face-frown-open"></i>
-                <% elsif @user_rating >= 1 %>
-                  <i class="fa-regular fa-face-frown-open"></i>
-                <% elsif @user_rating >= 0 %>
-                  <i class="fa-regular fa-face-frown"></i>
-                <% end %>
-                Overall Rating</small>
-            </li>
-          </ul>
-        </div>
+
 
         <div class="px-4 py-3">
           <h5 class="mb-0">About</h5>
