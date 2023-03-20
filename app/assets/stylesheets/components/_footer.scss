@@ -1,3 +1,20 @@
-.new-background{
-  background-color:#3C9379;
+footer {
+  background-color: #272727;
+  color: #f8f9fa;
+}
+.small_footer {
+  // background-color: #5B9638;
+  background-color: #3C9379;
+}
+footer a:hover i {
+  color: #BBB !important;
+}
+footer .bold {
+  font-weight: 600;
+}
+.about-text, .contact-div p span {
+  color: #BBB
+}
+.about-text, .contact-div p:not(:last-child) {
+  margin-bottom: 5px;
 }
