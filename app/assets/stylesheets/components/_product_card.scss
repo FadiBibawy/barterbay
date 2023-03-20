@@ -6,23 +6,6 @@
   border: 1px solid rgb(230,230,230);
 }
 
-.user p {
-  opacity: .5;
-  font-size: 14px;
-}
-
-.quality p {
-  opacity: .5;
-  font-size: 14px;
-}
-
-.link{
-  
-  text-decoration: none;
-  color: black;
-  font-size: 15px;
-}
-
 .imgBx {
   position: relative;
   overflow: hidden;
@@ -39,12 +22,4 @@
   transform: scale(1.05);
   outline: 1px solid rgb(230, 230, 230);
   cursor: pointer;
-}
-
-.imgBx:hover + .contentBx {
-  margin-top: 10px;
-}
-
-.imgBx:hover + .contentBx .product_card {
-  transform: scale(1.05);
 }

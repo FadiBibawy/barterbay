@@ -9,12 +9,17 @@ class ProductsController < ApplicationController
     # @products = Product.joins("LEFT JOIN offers ON products.id = offers.product_id OR products.id = offers.offered_product_id")
     #                    .where("offers.deal IS NULL OR offers.deal = ?", false)
     #                    .distinct
-    @products = Product.where("bartered = ?", false)
-
+    @products = case params[:category]
+                when 'service'
+                  Product.where(category: 'service')
+                when 'goods'
+                  Product.where(category: 'goods')
+                else
+                  Product.where("bartered = ?", false)
+                end
     if params[:query].present?
       @products = @products.search(params[:query])
     end
-
     if @products.empty?
       flash[:notice] = "There are no products!"
     end
