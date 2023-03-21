@@ -1,0 +1,19 @@
+    <div class="row gap-4" id='products' data-search-products-target="list">
+      <% @products.each do |product| %>
+          <div class= "card col-sm-6 col-md-3 col-lg-2 px-0">
+            <% if product.photos.first %>
+            <div class = "imgBx">
+                <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
+            </div>
+            <%end%>
+            <div class="card-body">
+              <p class='text-center'><%= link_to product.title.capitalize , product_path(product), class: 'text-decoration-none' %></p>
+              <div>
+                <p><strong>By:</strong> <%= product.user.name %></p>
+                <p><strong>Quality:</strong> <%= product.quality.capitalize %></p>
+              </div>
+            </div> <%# card body %>
+          </div> <%# card div %>
+        <%# card container %>
+      <% end %>
+    </div> <%# row %>
