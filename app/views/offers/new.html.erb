@@ -1,39 +1,39 @@
-<div class="container">
-  <h1>New Offer</h1>
 
-  <div class="container">
-    <p>barter: <strong><%= @product.title %></strong></p>
-    <p>With:</p>
-    <%= simple_form_for [@product, @offer] do |f| %>
+  <h1 class='display-6 text-center my-3'>New Offer</h1>
 
-      <% if @offer.errors[:base].any? %>
-        <div class="alert alert-danger">
-          <ul>
-            <% @offer.errors[:base].each do |error| %>
-              <li><%= error %></li>
-            <% end %>
-          </ul>
-        </div>
+  <div class="form_with_text&button d-flex justify-content-between align-items-center">
+    <div class='barter_with_text'>
+      <p>Barter: <strong><%= @product.title %></strong></p>
+      <p>With:</p>
+    </div>
+    <div class='new_offer_form'>
+      <%= simple_form_for [@product, @offer] do |f| %>
+        <% if @offer.errors[:base].any? %>
+          <div class="alert alert-danger">
+            <ul>
+              <% @offer.errors[:base].each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%# <% options = []
+          options << ['Add New Product', new_product_path]
+          options += @products.map { |p| [p.title, p.id] } %>
+
+        <% @products = current_user.products.where('bartered = ?', false)%>
+        <% if @products.empty? %>
+          <p>You don't have any products to barter with</p>
+          <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
+        <% else %>
+          <%= f.input :offered_product, collection: @products %>
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %>
       <% end %>
+    </div> <%# the whole form %>
 
-      <%# <% options = []
-        options << ['Add New Product', new_product_path]
-        options += @products.map { |p| [p.title, p.id] } %>
-
-      <br>
-
-      <% @products = current_user.products.where('bartered = ?', false)%>
-      <% if @products.empty? %>
-        <p>You don't have any products to barter with</p>
-        <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
-      <% else %>
-        <%= f.input :offered_product, collection: @products %>
-        <%= f.button :submit, class: 'btn btn-primary' %>
-      <% end %>
-    <% end %>
     <div class='d-flex justify-content-end'>
         <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
     </div>
-
-  </div>
-</div>
+  </div> <%# form with text %>

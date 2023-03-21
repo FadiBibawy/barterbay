@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 120px;
+  margin-top: 80px;
 }
 .text23 {
   /* Stop Selling, start Bartering! */
@@ -23,9 +23,12 @@
 
 .left-text{
   flex-grow: 1;
-
 }
 
 .right-text{
   flex-grow: 2;
 }
+// .home_bg {
+//   background: url("https://images.unsplash.com/photo-1579208570378-8c970854bc23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1522&q=80") center center no-repeat;
+//   background-size: cover;
+// }
