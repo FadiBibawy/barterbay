@@ -1,8 +1,5 @@
-<div class="container mt-4">
-
 <%# Search bar %>
-
-  <div class="d-flex justify-content-center" data-controller= 'search_products'>
+  <div class="d-flex justify-content-center my-4" data-controller= 'search_products'>
     <%= form_with url: products_path, method: :get, class: "d-flex justify-content-center",
       data: {search_products: 'form'} do |form| %>
       <%= text_field_tag :query,
@@ -26,8 +23,7 @@
 
 <%# Display Products product_card %>
 
-  <div>
-    <div class="row gap-3" id='products'>
+    <div class="row gap-4" id='products'>
       <% @products.each do |product| %>
           <div class= "card col-sm-6 col-md-3 col-lg-2 px-0">
             <% if product.photos.first %>
@@ -46,6 +42,3 @@
         <%# card container %>
       <% end %>
     </div> <%# row %>
-  </div> <%# products div %>
-
-</div> <%# this is the very main container %>
