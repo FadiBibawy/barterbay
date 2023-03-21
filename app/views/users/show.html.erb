@@ -22,14 +22,7 @@
       <div class="px-4 py-4 cover">
         <div class="media align-items-end">
           <div class="profile mr-3">
-            <% if current_user.photo.key %>
-            <%# <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail"> %>
-              <%= cl_image_tag current_user.photo.key, width:"130", class: "rounded mb-2 img-thumbnail" %>
-            <% end %>
-            <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
-            <div class="media-body mb-5 text-white">
-              <h4 class="mt-0 mb-0">Mark Williams</h4>
-              <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+
             <div class="d-flex justify-content-between align-items-center">
 
               <%= cl_image_tag @user.photo.key, width:"130", class: "rounded mb-2 img-thumbnail" %>
@@ -95,11 +88,12 @@
         <div class="py-4 px-4 row">
 
           <div class="left col-6 ">
+            <%= link_to 'Add Product', new_product_path,
+                class: 'mb-4 white-text btn edit-btn btn-outline-dark btn-sm btn-block'%>
+
             <div class="d-flex align-items-center justify-content-between mb-3">
               <h5 class="mb-0"><strong>Bartered Products:</strong></h5>
             </div>
-            <%= link_to 'Add Product', new_product_path,
-                class: 'white-text btn edit-btn btn-outline-dark btn-sm btn-block'%>
 
 
             <div class="row">
@@ -143,11 +137,31 @@
 
                 <div class='list-group'>
                   <% @availabe_products.each do |product|%>
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <%= link_to product.title.capitalize, product_path(product),
-                        class: 'text-decoration-none' %>
-                      <span class="badge bg-primary rounded-pill"><%=product.offers.count%> Offer(s)</span>
-                    </div>
+                    <div class = "mt-4 mx-1 card col-sm-1 col-md-6 col-lg-3"
+                         data-product-filter-target="products">
+                      <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
+                      <% if product.photos.first %>
+                      <div class = "imgBx">
+                          <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
+                      </div>
+                      <%end%>
+                      <div class="text-center card-body">
+                        <p><strong><%= link_to product.title.capitalize , product_path(product), class: "link" %></strong></p>
+
+                        <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
+                          <div style="max-width:100%">
+                            <h6><small><strong>Offered by:</strong></small></h6>
+                            <small><p><%= product.user.name %></p></small>
+                          </div> <%# from %>
+                          <div style="max-width:100%">
+                            <small>Quality:</small>
+                            <small><%= product.quality.capitalize %></p></small>
+                          </div> <%# quality %>
+                        </div>
+                        <span class="badge bg-primary rounded-pill"><%= pluralize(product.offers.count + product.offered_offers.count, 'Offer')%></span>
+
+                      </div> <%# card body %>
+                    </div> <%# card div %>
                   <% end %>
                 </div>
               <% end %>
