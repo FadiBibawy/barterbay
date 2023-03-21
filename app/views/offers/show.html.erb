@@ -1,17 +1,88 @@
 <div class="container mt-4">
 
-<% if @offer.user == current_user %>
-<div class="row">
-  <div class="col-md-6">
-    <h3>You offered:</h3>
-    <h3><strong><%= link_to @offer.offered_product.title, product_path(@offer.offered_product), class: "btn btn-dark" %></strong></h3>
+  <% if @offer.user == current_user %>
+  <div class="d-flex justify-content-between">
+    <h3 class="w-50"><%= @offer.user.username.capitalize %></h3>
+    <h3 class="w-50">Proposed with barter: <%= link_to @offer.product.user.username, @offer.product.user %></h3>
+  </div>
+
+  <div class="d-flex">
+    <%# <div class="col-md-6"> %>
+    <div class= "new-cl w-50">
+      <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <%= @offer.offered_product.title %>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+          <%= @offer.offered_product.description %> <p><%= @offer.offered_product.category %> : <%= @offer.offered_product.subcategory %></p>
+                  <p><strong>Address:</strong> <%= @offer.offered_product.address %></p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          User Reviews
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+        <% @offer.offered_product.user.rated_reviews.each do |review| %>
+            <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+              <strong><%= '⭐' * review.rating %></strong>
+            </li>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <div class="col-md-6">
-    <h3>to barter with: <%= link_to @offer.product.user.username, @offer.product.user %></h3>
-    <h3><strong><%= link_to @offer.product.title, product_path(@offer.product), class: "btn btn-dark" %></strong></h3>
-</div>
+          <div class = "imgBx">
+            <%= cl_image_tag  @offer.offered_product.photos.first.key, height: 400, crop: :fill%>
+          </div>
+
+  </div>
 </div>
 
+<div class= "new-cl w-50" >
+  <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <%= @offer.product.title %>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+      <%= @offer.product.description %> <p><%= @offer.product.category %> : <%= @offer.product.subcategory %></p>
+              <p><strong>Address:</strong> <%= @offer.product.address %></p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        User Reviews
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+      <div class="accordion-body">
+      <% @offer.product.user.rated_reviews.each do |review| %>
+          <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+            <strong><%= '⭐' * review.rating %></strong>
+          </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<div class = "imgBx">
+            <%= cl_image_tag  @offer.product.photos.first.key, height: 400, crop: :fill%>
+          </div>
+</div>
+</div>
+</div>
       <% if @offer.accepted == true %>
         <p>Your Offer is Accepted!</p>
       <% elsif @offer.refused == true %>
@@ -20,20 +91,92 @@
         <p>Your <mark>Offer</mark> is still Pending...</p>
       <% end %>
 
-
   <% else %>
-  <div class="row">
-  <div class="col-md-6">
-    <h3><%= @offer.user.username.capitalize %> offered you:</h3>
-    <%= button_to @offer.offered_product.title, product_path(@offer.offered_product), class: "btn btn-dark" %>
+  <div class="container mt-4">
+
+  <div class="d-flex justify-content-between">
+    <h3 class="w-50"> <%= link_to @offer.offered_product.user.username, @offer.product.user %> Proposed an Offer</h3>
+    <h3 class="w-50"> <%= @offer.product.user.username.capitalize %></h3>
   </div>
-  <div class="col-md-6">
-    <h3>to barter with your product:</h3>
-    <%= button_to @offer.product.title, product_path(@offer.product), class: "btn btn-dark" %>
+
+  <div class="d-flex">
+    <%# <div class="col-md-6"> %>
+    <div class= "new-cl w-50">
+      <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <%= @offer.offered_product.title %>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+          <%= @offer.offered_product.description %> <p><%= @offer.offered_product.category %> : <%= @offer.offered_product.subcategory %></p>
+                  <p><strong>Address:</strong> <%= @offer.offered_product.address %></p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          User Reviews
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+        <% @offer.offered_product.user.rated_reviews.each do |review| %>
+            <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+              <strong><%= '⭐' * review.rating %></strong>
+            </li>
+          <% end %>
+        </div>
+      </div>
+    </div>
+          <div class = "imgBx">
+            <%= cl_image_tag  @offer.offered_product.photos.first.key, height: 400, crop: :fill%>
+          </div>
+
   </div>
-</div> <%# ROW %>
-<hr>
-<div class="row">
+</div>
+
+<div class= "new-cl w-50" >
+  <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <%= @offer.product.title %>
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+      <%= @offer.product.description %> <p><%= @offer.product.category %> : <%= @offer.product.subcategory %></p>
+              <p><strong>Address:</strong> <%= @offer.product.address %></p>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        User Reviews
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+      <div class="accordion-body">
+      <% @offer.product.user.rated_reviews.each do |review| %>
+          <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+            <strong><%= '⭐' * review.rating %></strong>
+          </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<div class = "imgBx">
+            <%= cl_image_tag  @offer.product.photos.first.key, height: 400, crop: :fill%>
+          </div>
+</div>
+</div>
+</div>
+<div class="offer-accep">
     <% if @offer.deal == false %>
       <div class='col-md-4'><%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put, class: 'btn btn-outline-success' %></div>
       <div class='col-md-4'><%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put, class: 'btn btn-outline-warning' %></div>
@@ -46,14 +189,11 @@
 
 <%# <%= link_to 'Delete', @offer, method: :delete, form: { data: { turbo_confirm: 'Do you really…' } })
 %>
-<div class='col-md-4'>
-  <%= link_to "Delete", offer_path(@offer),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-danger' %> </div>
-</div> <%# ROW %>
+<%# ROW %>
 
   <div data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @offer.id %>">
     <div class="chatroom">
-      <h1>Messages:</h1>
+      <h1><strong>Messages</strong></h1>
 
       <div class="messages" data-chatroom-subscription-target="messages">
         <% @offer.messages.each do |message| %>
