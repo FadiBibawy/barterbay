@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-*
+
 .product_card {
   border-radius: 3px;
   box-shadow: 0 0 5px rgb(230,230,230);
@@ -23,4 +23,7 @@
   transform: scale(1.05);
   outline: 1px solid rgb(230, 230, 230);
   cursor: pointer;
+}
+
+.product-card {
 }

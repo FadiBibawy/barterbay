@@ -14,9 +14,18 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @product.destroy
+    redirect_to current_user, status: :see_other
+  end
+
   private
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def set_message
+    @message = Message.find(params[:id])
   end
 end
