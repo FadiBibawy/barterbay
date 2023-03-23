@@ -100,15 +100,16 @@
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
+      <div class="product-action">
+        <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
 
-      <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
+        <% if @product.user == current_user %>
 
-      <% if @product.user == current_user %>
-
-        <p><%= link_to "Delete this Product",
-                product_path(@product),
-                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                %></p>
-      <% end %>
+          <p><%= link_to "Delete this Product",
+                  product_path(@product),
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                  %></p>
+        <% end %>
+      </div>
     </div>
   </div>

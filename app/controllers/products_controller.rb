@@ -11,9 +11,9 @@ class ProductsController < ApplicationController
     #                    .distinct
     @products = case params[:category]
                 when 'service'
-                  Product.where(category: 'service')
+                  Product.where("category= ? AND bartered= ?", 'service', false)
                 when 'goods'
-                  Product.where(category: 'goods')
+                  Product.where("category= ? AND bartered= ?", 'goods', false)
                 else
                   Product.where("bartered = ?", false)
                 end
