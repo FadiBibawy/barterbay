@@ -46,9 +46,8 @@ fadi.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/fadi.jfi
 puts '---------------------------------'
 
 puts "Creating Products..."
-5.times do
-  url = "https://picsum.photos/300/400"
-  file = URI.open(url)
+20.times do
+
   quality = ["good", "very good", "fair", "not bad"]
   address = ['Rudi-Dutschke-Straße 26, 10969 Berlin', '16 Vla Gaudelet, 75011 Paris, France', 'C/ del Bruc, 149, 08037 Barcelona, Spain', '380 Bd Brahim Roudani, Casablanca, Morocco']
   category = ['service', 'goods']
@@ -61,7 +60,10 @@ puts "Creating Products..."
                         subcategory: category == 'service' ? service.sample : goods.sample,
                         quality: quality.sample,
                         address: address.sample)
-
+  url = "https://source.unsplash.com/random/1920x1080/?#{product.title}"
+  file = URI.open(url)
+  product.photos.attach(io: file, filename: "#{rand(1.5..3.0)}image.png", content_type: "image/png")
+  file = URI.open(url)
   product.photos.attach(io: file, filename: "#{rand(1.5..3.0)}image.png", content_type: "image/png")
   product.user = User.all.sample
   product.save
@@ -69,6 +71,11 @@ puts "Creating Products..."
 end
 puts ""
 puts "All Products Created!"
+
+
+
+
+puts "Creating Messages..."
 
 # img_urls = [
 #   "https://images.unsplash.com/photo-1502471074209-74d89da65ef2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
