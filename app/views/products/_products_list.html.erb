@@ -3,10 +3,7 @@
           <div class= "card col-sm-6 col-md-3 col-lg-2 px-0">
             <% if product.photos.first %>
               <%= link_to product do %>
-                <div class = "imgBx">
-                    <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
-
-                </div>
+                    <%= cl_image_tag product.photos.first.key, class: 'card-img-top product-img' %>
               <% end %>
             <%end%>
             <div class="card-body">
