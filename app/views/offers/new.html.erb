@@ -1,9 +1,9 @@
 
-  <h1 class='display-6 text-center my-3'>New Offer</h1>
+  <h1 class='display-6 text-center mb-3'>New Offer</h1>
 
   <div class="form_with_text&button d-flex justify-content-between align-items-center">
     <div class='barter_with_text'>
-      <p>Barter: <strong><%= @product.title %></strong></p>
+      <p>Barter: <strong><%= @product.title.capitalize %></strong></p>
       <p>With:</p>
     </div>
     <div class='new_offer_form'>
@@ -34,6 +34,8 @@
     </div> <%# the whole form %>
 
     <div class='d-flex justify-content-end'>
-        <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
+        <% if !@products.empty? %>
+          <%= link_to "Add a new product", new_product_path, class: 'btn btn-primary' %>
+        <%end%>
     </div>
   </div> <%# form with text %>
