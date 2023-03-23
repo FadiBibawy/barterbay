@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-*
+
 .product_card {
   border-radius: 3px;
   box-shadow: 0 0 5px rgb(230,230,230);
@@ -10,15 +10,42 @@
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+  height: 30%;
+  width: 100%;
 }
 
 .imgBx img {
   transition: all 0.2s;
   filter: grayscale(50%);
   width: 100%;
+  // max-height: 100px;
 }
 
 .imgBx:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  outline: 1px solid rgb(230, 230, 230);
+  cursor: pointer;
+}
+
+.offer-card {
+  height: 40vh;
+  // width:150px;
+}
+
+.offer-img {
+  height: 15vh;
+  object-fit: cover;
+}
+
+.offer-img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+  outline: 1px solid rgb(230, 230, 230);
+  cursor: pointer;
+}
+
+.card-img-top:hover{
   filter: grayscale(0%);
   transform: scale(1.05);
   outline: 1px solid rgb(230, 230, 230);
