@@ -1,4 +1,4 @@
-<div class='d-flex home_bg'>
+<div class='d-flex home_bg justify-content-around'>
 <%# Text about the app %>
     <div class = "left-text bartertext " >
         <%# stop selling text  %>
@@ -8,7 +8,8 @@
         <%# additonal texzt %>
         <div>Exchange goods and services without  involving money</div>
     </div>
-    <div class ="right-text">
+    <div class="right-text d-flex justify-content-center align-items-center">
+    <%= image_tag("logo_1.png", height:"75%")%>
     </div>
 </div>
 <%= render "products/index" %>

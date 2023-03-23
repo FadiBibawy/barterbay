@@ -1,19 +1,15 @@
 <div class="mt-4">
 
   <% if @offer.user == current_user %>
-  <div class="d-flex justify-content-between">
-    <h3 class="w-50"><%= @offer.user.username.capitalize %></h3>
-    <h3 class="w-50">Proposed with barter: <%= link_to @offer.product.user.username, @offer.product.user %></h3>
-  </div>
 
-  <div class="d-flex">
+  <div class="d-flex justify-content-center">
     <%# <div class="col-md-6"> %>
-    <div class= "new-cl w-50">
+    <div class= "new-cl w-40">
       <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <%= @offer.offered_product.title %>
+            <%= @offer.offered_product.title  %> From&nbsp; <%= link_to @offer.offered_product.user.username, @offer.product.user %>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -59,12 +55,17 @@
   </div>
 </div>
 
-<div class= "new-cl w-50" >
+<div class="arrow">
+                          <%# <%= cl_image_tag("left_right_arrow_via2ac", width: 400, height: 300, crop: :fill) %>
+                          <img src="https://res.cloudinary.com/diszilsan/image/upload/v1679508935/left_right_arrow_via2ac.png" alt="arrow" width='50px'>
+                        </div>
+
+<div class= "new-cl w-40" >
   <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <%= @offer.product.title %>
+        <%= @offer.product.title %> from &nbsp;  <%= link_to @offer.product.user.username, @offer.product.user %>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -121,19 +122,16 @@
   <% else %>
   <div class="container mt-4">
 
-  <div class="d-flex justify-content-between">
-    <h3 class="w-50"> <%= link_to @offer.offered_product.user.username, @offer.product.user %> Proposed an Offer</h3>
-    <h3 class="w-50"> <%= @offer.product.user.username.capitalize %></h3>
-  </div>
 
-  <div class="d-flex">
+
+  <div class="d-flex justify-content-center">
     <%# <div class="col-md-6"> %>
-    <div class= "new-cl w-50">
+    <div class= "new-cl w-40">
       <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <%= @offer.offered_product.title %>
+            <%= @offer.offered_product.title %> from &nbsp;  <%= link_to @offer.offered_product.user.username, @offer.product.user %>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -177,13 +175,16 @@
 
   </div>
 </div>
-
-<div class= "new-cl w-50" >
+<div class="arrow">
+                          <%# <%= cl_image_tag("left_right_arrow_via2ac", width: 400, height: 300, crop: :fill) %>
+                          <img src="https://res.cloudinary.com/diszilsan/image/upload/v1679508935/left_right_arrow_via2ac.png" alt="arrow" width='50px'>
+                        </div>
+<div class= "new-cl w-40" >
   <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <%= @offer.product.title %>
+        <%= @offer.product.title %> from &nbsp;  <%= link_to @offer.product.user.username, @offer.product.user %>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
