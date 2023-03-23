@@ -18,7 +18,7 @@
   width: 100%;
 }
 
-.imgBx img:hover {
+.imgBx:hover {
   filter: grayscale(0%);
   transform: scale(1.05);
   outline: 1px solid rgb(230, 230, 230);

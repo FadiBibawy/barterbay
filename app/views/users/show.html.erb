@@ -208,18 +208,90 @@
               <div class='px-2 py-4'>
                   <ul class='list-group'>
                     <% @user.received_offers.each do |offer|%>
-                    <li class='bg-light list-group-item d-flex justify-content-between align-items-center'>
-                        <p class='m-0'><strong><%= offer.offered_product.title.capitalize %></strong>
-                          in exchange for your: <strong><%= offer.product.title.capitalize %></strong>
-                        </p>
-                        <% if offer.accepted == true %>
-                          <span class="badge bg-success rounded-pill"><%= link_to 'Offer accepted!', offer_path(offer), class: 'text-white' %></span>
-                        <% elsif offer.refused == true %>
-                          <span class="badge bg-danger rounded-pill"><%= link_to 'Offer refused!', offer_path(offer), class: 'text-white' %></span>
-                        <% else %>
-                          <span class="badge bg-primary rounded-pill"><%= link_to 'Offer pending!', offer_path(offer), class: ' text-white' %></span>
-                        <% end %>
+                      <li class='bg-light list-group-item d-flex justify-content-between align-items-center'>
+                          <p class='m-0'><strong><%= offer.offered_product.title.capitalize %></strong>
+                            in exchange for your: <strong><%= offer.product.title.capitalize %></strong>
+                          </p>
+                          <% if offer.accepted == true %>
+                            <span class="badge bg-success rounded-pill"><%= link_to 'Offer accepted!', offer_path(offer), class: 'text-white' %></span>
+                          <% elsif offer.refused == true %>
+                            <span class="badge bg-danger rounded-pill"><%= link_to 'Offer refused!', offer_path(offer), class: 'text-white' %></span>
+                          <% else %>
+                            <span class="badge bg-primary rounded-pill"><%= link_to 'Offer pending!', offer_path(offer), class: ' text-white' %></span>
+                          <% end %>
                       </li>
+
+                      <div class='d-flex align-items-center'>
+
+                        <div class = "mt-4 mx-1 card col-sm-1 col-md-6 col-lg-3"
+                            data-product-filter-target="products">
+                          <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
+                          <% if offer.product.photos.first %>
+                            <%= link_to offer.product do %>
+                              <div class = "imgBx">
+                                  <%= cl_image_tag offer.product.photos.first.key, class: 'card-img-top' %>
+                              </div>
+                            <% end %>
+                          <%end%>
+                          <div class="text-center card-body">
+                            <p><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "link" %></strong></p>
+
+                            <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
+                              <div style="max-width:100%">
+                                <h6><small><strong>Offered by:</strong></small></h6>
+                                <small><p><%= link_to offer.product.user.name %></p></small>
+                              </div> <%# from %>
+                              <div style="max-width:100%">
+                                <small>Quality:</small>
+                                <small><%= offer.product.quality.capitalize %></p></small>
+                              </div> <%# quality %>
+                            </div>
+                            <span class="badge bg-primary rounded-pill"><%= pluralize(offer.product.offers.count + offer.product.offered_offers.count, 'Offer')%></span>
+
+                          </div> <%# card body %>
+                        </div> <%# card div %>
+
+                        <div class="arrow">
+                          <%# <%= cl_image_tag("left_right_arrow_via2ac", width: 400, height: 300, crop: :fill) %>
+                          <img src="https://res.cloudinary.com/diszilsan/image/upload/v1679508935/left_right_arrow_via2ac.png" alt="arrow" width='50px'>
+                        </div>
+
+                        <div class = "mt-4 mx-1 card col-sm-1 col-md-6 col-lg-3"
+                            data-product-filter-target="products">
+                          <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
+                          <% if offer.offered_product.photos.first %>
+                            <%= link_to offer.offered_product do %>
+                              <div class = "imgBx">
+                                  <%= cl_image_tag offer.offered_product.photos.first.key, class: 'card-img-top' %>
+                              </div>
+                            <% end %>
+                          <%end%>
+                          <div class="text-center card-body">
+                            <p><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "link" %></strong></p>
+
+                            <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
+                              <div style="max-width:100%">
+                                <h6><small><strong>Offered by:</strong></small></h6>
+                                <small><p><%= link_to offer.offered_product.user.name %></p></small>
+                              </div> <%# from %>
+                              <div style="max-width:100%">
+                                <small>Quality:</small>
+                                <small><%= offer.offered_product.quality.capitalize %></p></small>
+                              </div> <%# quality %>
+                            </div>
+                            <span class="badge bg-primary rounded-pill"><%= pluralize(offer.offered_product.offers.count + offer.offered_product.offered_offers.count, 'Offer')%></span>
+
+                          </div> <%# card body %>
+                        </div> <%# card div %>
+
+
+                      </div>
+
+
+
+
+
+
                     <% end %>
                   </ul>
               </div>
