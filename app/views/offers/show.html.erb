@@ -26,7 +26,7 @@
       <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-          User Reviews
+          User Reviews <%= offer.offered_product.user.review %>
         </button>
       </h2>
       <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -39,9 +39,22 @@
         </div>
       </div>
     </div>
-          <div class = "imgBx">
-            <%= cl_image_tag  @offer.offered_product.photos.first.key, height: 400, crop: :fill%>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingthree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          Product Picture
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingthree">
+        <div class="accordion-body">
+          <div class="imgBx">
+            <%= cl_image_tag @offer.offered_product.photos.first.key, height: 400, crop: :fill%>
           </div>
+
+
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -77,19 +90,32 @@
       </div>
     </div>
   </div>
-<div class = "imgBx">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingthree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+        Product Picture
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+      <div class="accordion-body">
+      <div class = "imgBx">
             <%= cl_image_tag  @offer.product.photos.first.key, height: 400, crop: :fill%>
           </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>
     <div class= 'd-flex justify-content-center mt-3'>
       <% if @offer.accepted == true %>
         <p class='border border-success p-2'>Your Offer is Accepted!</p>
+        <p div class="alert alert-warning" role="alert">Your Offer is Accepted!</p>
       <% elsif @offer.refused == true %>
         <p class='border border-danger p-2'>Your Offer is Refused!</p>
       <% else @offer.deal == false %>
         <p class='border border-warning p-2'>Your Offer is still Pending...</p>
+        <p div class="alert alert-warning" role="alert">Your <mark>Offer</mark> is still Pending...</p>
       <% end %>
     </div>
   <% else %>
@@ -133,9 +159,21 @@
         </div>
       </div>
     </div>
-          <div class = "imgBx">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapsethree">
+          Product Picture
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+        <div class="accordion-body">
+        <div class = "imgBx">
             <%= cl_image_tag  @offer.offered_product.photos.first.key, height: 400, crop: :fill%>
           </div>
+
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -163,6 +201,7 @@
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
       <div class="accordion-body">
+
       <% @offer.product.user.rated_reviews.each do |review| %>
           <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
             <strong><%= '⭐' * review.rating %></strong>
@@ -171,23 +210,36 @@
       </div>
     </div>
   </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+        Product Picture
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+      <div class="accordion-body">
 <div class = "imgBx">
             <%= cl_image_tag  @offer.product.photos.first.key, height: 400, crop: :fill%>
           </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 </div>
 </div>
-<div class="offer-accep">
+<div class="offer-accep btspace">
     <% if @offer.deal == false %>
       <div class='col-md-4'><%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put, class: 'btn btn-outline-success' %></div>
       <div class='col-md-4'><%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put, class: 'btn btn-outline-warning' %></div>
     <% elsif @offer.accepted == true %>
-      <p>You Accepted the Offer!</p>
+      <p div class="alert alert-success" role="alert" >You Accepted the Offer!</p>
     <% else %>
-      <p>You Refused the Offer!</p>
+      <p div class="alert alert-danger" role="alert">You Refused the Offer!</p>
     <% end %>
   <% end %>
-
+</div>
 <%# <%= link_to 'Delete', @offer, method: :delete, form: { data: { turbo_confirm: 'Do you really…' } })
 %>
 <%# ROW %>
@@ -213,5 +265,5 @@
     <% end %>
     </div> <%# stimulus container %>
   </div> <%# main container %>
-
+</div>
 </div>
