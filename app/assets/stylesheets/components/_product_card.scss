@@ -51,3 +51,13 @@
   outline: 1px solid rgb(230, 230, 230);
   cursor: pointer;
 }
+
+.card-img-top{
+  transition: all 0.2s;
+  filter: grayscale(50%);
+  width: 100%;
+}
+
+.product-img {
+  // height: 50vh;
+}

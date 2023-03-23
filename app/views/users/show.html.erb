@@ -105,7 +105,7 @@
                       <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
                       <% if product.photos.first %>
                         <%= link_to product do %>
-                              <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
+                              <%= cl_image_tag product.photos.first.key, class: 'card-img-top ' %>
                         <% end %>
                       <%end%>
                       <div class="text-center card-body">
