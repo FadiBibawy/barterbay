@@ -9,7 +9,7 @@
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <%= @offer.offered_product.title  %> From&nbsp;<%= @offer.offered_product.user.username.capitalize %>
+            <%= @offer.offered_product.title  %> From&nbsp; <%= link_to @offer.offered_product.user.username, @offer.product.user %>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -65,7 +65,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <%= @offer.product.title %> from &nbsp; <%= @offer.product.user.username.capitalize %>
+        <%= @offer.product.title %> from &nbsp;  <%= link_to @offer.product.user.username, @offer.product.user %>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -131,7 +131,7 @@
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <%= @offer.offered_product.title %> from &nbsp; <%= @offer.offered_product.user.username.capitalize %>
+            <%= @offer.offered_product.title %> from &nbsp;  <%= link_to @offer.offered_product.user.username, @offer.product.user %>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -184,7 +184,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <%= @offer.product.title %> from &nbsp; <%= @offer.product.user.username.capitalize %>
+        <%= @offer.product.title %> from &nbsp;  <%= link_to @offer.product.user.username, @offer.product.user %>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
