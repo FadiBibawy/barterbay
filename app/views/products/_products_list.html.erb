@@ -6,7 +6,7 @@
                     <%= cl_image_tag product.photos.first.key, class: 'card-img-top product-img' %>
               <% end %>
             <%end%>
-            <div class="card-body">
+            <div class="card-body d-flex flex-column justify-content-end">
               <p class='text-center product-title'><%= link_to product.title.capitalize , product_path(product), class: 'text-decoration-none' %></p>
               <div class="d-flex">
                 <p><small><i class="fa-solid fa-user"></i> <%= link_to product.user.name %></small></p>

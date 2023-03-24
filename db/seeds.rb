@@ -39,7 +39,7 @@ osama = User.create(email: 'osama@osama.com', password: '123456', username: 'osa
 osama.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/osama.jfif')),
                   filename: "osama.jfif", content_type: "image/jfif")
 
-fadi = User.create(email: 'fadi@fadi.com', password: '123456', username: 'fadiFedo', first_name: 'fadi', last_name: 'bibawy')
+fadi = User.create(email: 'fadi@fadi.com', password: '123456', username: 'fadiBibawy', first_name: 'fadi', last_name: 'bibawy')
 fadi.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/fadi.jfif')),
                   filename: "fadi.jfif", content_type: "image/jfif")
 
