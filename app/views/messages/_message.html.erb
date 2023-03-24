@@ -1,6 +1,13 @@
-<div id="message-<%= message.id %>">
-  <small>
-    <strong><%= message.user.first_name %></strong>
+<% if message.user == current_user %>
+  <div class="text-end" id="message-<%= message.id %>">
+    <strong class="username" style="font-size:2vh">You</strong>
+
+<% else %>
+  <div id="message-<%= message.id %>">
+    <strong class="username" style="font-size:2vh"><%= message.user.first_name %></strong>
+
+<% end %>
+  <small class="text-muted">
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>

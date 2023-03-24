@@ -35,7 +35,7 @@
             <%# <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail"> %>
 
             <div class="media-body d-flex justify-content-between align-items-center mb-2 text-white">
-              <h4 class="mt-0 mb-0"><%= @user.name %></h4>
+              <h4 class="mt-0 mb-0 "><%= @user.name %></h4>
 
 
               <div class="p-4 d-flex justify-content-end text-center">
@@ -112,9 +112,9 @@
                         <p class="product-title"><strong><%= link_to product.title.capitalize , product_path(product), class: "product-title" %></strong></p>
 
                         <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
-                          <div style="max-width:100%">
+                          <div style="max-width:100%; width: 50%;">
                             <h6><small><i class="fa-solid fa-user"></i></small></h6>
-                            <p><small><%= link_to product.user.name %></small></p>
+                            <p class="username"><small><%= link_to product.user.name %></small></p>
                           </div> <%# from %>
                           <div style="max-width:100%">
                             <small>Quality:</small>
@@ -158,9 +158,9 @@
                         <p class="product-title"><strong><%= link_to product.title.capitalize , product_path(product), class: "product-title" %></strong></p>
 
                         <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
-                          <div style="max-width:100%">
+                          <div style="max-width:100%; width: 50%;">
                             <h6><small><i class="fa-solid fa-user"></i></small></h6>
-                            <small><p><%= link_to product.user.name %></p></small>
+                            <small><p class="username"><%= link_to product.user.name %></p></small>
                           </div> <%# from %>
                           <div style="max-width:100%">
                             <small>Quality:</small>
@@ -186,17 +186,17 @@
                   <% @user.offers.each do |offer|%>
 
                       <div class='d-flex align-items-center justify-content-center row'>
-
                         <div class = "mt-2 card col-4" style="width: 10wh; height:25vh"
-                            data-product-filter-target="products">
+                             data-product-filter-target="products">
                           <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
-                          <% if offer.product.photos.first %>
-                            <%= link_to offer.product do %>
-                                  <%= cl_image_tag offer.product.photos.first.key, class: 'card-img-top offer-img' %>
+                          <% if offer.offered_product.photos.first %>
+                            <%= link_to offer.offered_product do %>
+                                  <%= cl_image_tag offer.offered_product.photos.first.key, class: 'card-img-top  offer-img' %>
                             <% end %>
                           <%end%>
                           <div class="text-center card-body d-flex flex-column justify-content-end p-0">
-                            <p class="product-title"><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "product-title" %></strong></p>
+                            <p class="product-title"><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "product-title" %></strong></p>
+
 
 
                           </div> <%# card body %>
@@ -218,20 +218,21 @@
                         </div>
 
                         <div class = "mt-2 card col-4" style="width: 10wh; height:25vh"
-                             data-product-filter-target="products">
+                            data-product-filter-target="products">
                           <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
-                          <% if offer.offered_product.photos.first %>
-                            <%= link_to offer.offered_product do %>
-                                  <%= cl_image_tag offer.offered_product.photos.first.key, class: 'card-img-top  offer-img' %>
+                          <% if offer.product.photos.first %>
+                            <%= link_to offer.product do %>
+                                  <%= cl_image_tag offer.product.photos.first.key, class: 'card-img-top offer-img' %>
                             <% end %>
                           <%end%>
                           <div class="text-center card-body d-flex flex-column justify-content-end p-0">
-                            <p class="product-title"><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "product-title" %></strong></p>
-
+                            <p class="product-title"><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "product-title" %></strong></p>
 
 
                           </div> <%# card body %>
                         </div> <%# card div %>
+
+
 
 
                       </div>
@@ -323,7 +324,7 @@
               <ul class="list-group">
                 <% @user.rated_reviews.each do |review| %>
                   <li class="list-group-item">
-                    <%= link_to review.reviewer.username, user_path(review.reviewer) %>:
+                    <%= link_to review.reviewer.username, user_path(review.reviewer), class:"username" %>:
                     <strong><%= '⭐' * review.rating %></strong>
                     <%= review.content %>
                   </li>

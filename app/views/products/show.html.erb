@@ -2,7 +2,7 @@
     <div class="pic-title">
       <h1 class="product-title text-center"><strong><%= @product.title.capitalize %></strong></h1>
       <div class="barter-button-container">
-        <p><i class="fa-solid fa-user"></i> <%= link_to @product.user.username, @product.user %></p>
+        <p class="username"><i class="fa-solid fa-user"></i> <%= link_to @product.user.name, @product.user, class:"username" %></p>
         <div class="barter_button">
           <% if @product.user != current_user %>
             <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>

@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   before_action :set_product, only: [:new, :create]
   before_action :set_offer, only: [:show, :accept, :refuse, :destroy]
+  before_action :set_rating1, :set_rating2, only: [:show]
 
   def index
     @offers = Offer.all
@@ -77,4 +78,33 @@ class OffersController < ApplicationController
   def set_offer
     @offer = Offer.find(params[:id])
   end
+
+  def set_rating1
+    @user1_rating = 0
+    if @offer.product.user.rated_reviews.size.zero?
+      @user1_rating = 0
+    else
+      @offer.product.user.rated_reviews.each do |review|
+        @user1_rating += review.rating
+      end
+
+      @user1_rating /= @offer.product.user.rated_reviews.size.to_f
+      @user1_rating = (@user1_rating * 2.0).round / 2.0
+    end
+  end
+  def set_rating2
+    @user2_rating = 0
+    if @offer.offered_product.user.rated_reviews.size.zero?
+      @user2_rating = 0
+    else
+      @offer.offered_product.user.rated_reviews.each do |review|
+        @user2_rating += review.rating
+      end
+
+      @user2_rating /= @offer.offered_product.user.rated_reviews.size.to_f
+      @user2_rating = (@user2_rating * 2.0).round / 2.0
+    end
+  end
+
+
 end

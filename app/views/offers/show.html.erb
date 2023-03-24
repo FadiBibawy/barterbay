@@ -4,17 +4,23 @@
 
   <div class="d-flex justify-content-center">
     <%# <div class="col-md-6"> %>
-    <div class= "new-cl w-40">
+    <div class= "new-cl w-40" style= "width:40%">
       <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <%= @offer.offered_product.title  %> From&nbsp; <%= link_to @offer.offered_product.user.username, @offer.product.user %>
+          <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <div class="product-title">
+              <%= @offer.offered_product.title  %>
+            </div>
+
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body">
-          <%= @offer.offered_product.description %> <p><%= @offer.offered_product.category %> : <%= @offer.offered_product.subcategory %></p>
+            <div class="text-end">
+              <i class="fa-solid fa-user"></i>   <%= link_to @offer.offered_product.user.username, @offer.offered_product.user, class:"username"  %>
+            </div>
+            <%= @offer.offered_product.description %> <p><%= @offer.offered_product.category %> : <%= @offer.offered_product.subcategory %></p>
                   <p><strong>Address:</strong> <%= @offer.offered_product.address %></p>
           </div>
         </div>
@@ -22,13 +28,20 @@
       <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-          User Reviews
+          <div class="d-flex justify-content-end">
+            <strong>User Rating</strong>
+            <% if @offer.offered_product.user.rated_reviews.blank? %>
+              <p class='text-center'><em> No reviews yet! </em></p>
+            <% else %>
+              <%= '⭐' * @user2_rating %>
+            <% end %>
+          </div>
         </button>
       </h2>
       <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
         <div class="accordion-body">
         <% @offer.offered_product.user.rated_reviews.each do |review| %>
-            <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+            <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer), class:"username" %>: <%= review.content %>
               <strong><%= '⭐' * review.rating %></strong>
             </li>
           <% end %>
@@ -38,7 +51,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingthree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-          Product Picture
+          <strong>Product Picture</strong>
         </button>
       </h2>
       <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingthree">
@@ -60,16 +73,22 @@
                           <img src="https://res.cloudinary.com/diszilsan/image/upload/v1679508935/left_right_arrow_via2ac.png" alt="arrow" width='50px'>
                         </div>
 
-<div class= "new-cl w-40" >
+<div class= "new-cl w-40" style= "width:40%" >
   <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <%= @offer.product.title %> from &nbsp;  <%= link_to @offer.product.user.username, @offer.product.user %>
+      <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        <div class="product-title">
+          <%= @offer.product.title %>
+        </div>
+
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
       <div class="accordion-body">
+        <div class="text-end">
+          <i class="fa-solid fa-user"></i> <%= link_to @offer.product.user.username, @offer.product.user, class:"username" %>
+        </div>
       <%= @offer.product.description %> <p><%= @offer.product.category %> : <%= @offer.product.subcategory %></p>
               <p><strong>Address:</strong> <%= @offer.product.address %></p>
       </div>
@@ -78,13 +97,20 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-        User Reviews
+        <div class="d-flex justify-content-end">
+          <strong>User Rating</strong>
+          <% if @offer.product.user.rated_reviews.blank? %>
+            <p class='text-center'><em> No reviews yet! </em></p>
+          <% else %>
+            <%= '⭐' * @user1_rating %>
+          <% end %>
+        </div>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
       <div class="accordion-body">
       <% @offer.product.user.rated_reviews.each do |review| %>
-          <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
+          <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer), class:"username" %>: <%= review.content %>
             <strong><%= '⭐' * review.rating %></strong>
           </li>
         <% end %>
@@ -94,7 +120,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingthree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-        Product Picture
+        <strong> Product Picture</strong>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
@@ -126,25 +152,37 @@
 
   <div class="d-flex justify-content-center">
     <%# <div class="col-md-6"> %>
-    <div class= "new-cl w-40">
+    <div class= "new-cl w-40" style= "width:40%">
       <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <%= @offer.offered_product.title %> from &nbsp;  <%= link_to @offer.offered_product.user.username, @offer.product.user %>
+            <div class="product-title">
+              <%= @offer.offered_product.title %>
+            </div>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body">
-          <%= @offer.offered_product.description %> <p><%= @offer.offered_product.category %> : <%= @offer.offered_product.subcategory %></p>
-                  <p><strong>Address:</strong> <%= @offer.offered_product.address %></p>
+            <div class="text-end">
+              <i class="fa-solid fa-user"></i>   <%= link_to @offer.offered_product.user.username, @offer.offered_product.user, class:"username"  %>
+            </div>
+            <%= @offer.offered_product.description %> <p><%= @offer.offered_product.category %> : <%= @offer.offered_product.subcategory %></p>
+            <p><strong>Address:</strong> <%= @offer.offered_product.address %></p>
           </div>
         </div>
       </div>
       <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-          User Reviews
+          <strong> <%= @offer.offered_product.user.first_name.capitalize %> Rating &nbsp;</strong>
+          <div class="d-flex justify-content-end">
+            <% if @offer.offered_product.user.rated_reviews.blank? %>
+              <p class='text-center'><em> No reviews yet! </em></p>
+            <% else %>
+              <%= '⭐' * @user1_rating %>
+            <% end %>
+          </div>
         </button>
       </h2>
       <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -160,7 +198,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header" id="panelsStayOpen-headingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapsethree">
-          Product Picture
+          <strong> Product Picture</strong>
         </button>
       </h2>
       <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
@@ -179,16 +217,23 @@
                           <%# <%= cl_image_tag("left_right_arrow_via2ac", width: 400, height: 300, crop: :fill) %>
                           <img src="https://res.cloudinary.com/diszilsan/image/upload/v1679508935/left_right_arrow_via2ac.png" alt="arrow" width='50px'>
                         </div>
-<div class= "new-cl w-40" >
+<div class= "new-cl w-40" style= "width:40%" >
   <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <%= @offer.product.title %> from &nbsp;  <%= link_to @offer.product.user.username, @offer.product.user %>
+        <div class="product-title">
+          <%= @offer.product.title  %>
+        </div>
+
+
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
       <div class="accordion-body">
+        <div class="text-end">
+          <i class="fa-solid fa-user"></i>   <%= link_to @offer.product.user.username, @offer.product.user, class:"username"  %>
+        </div>
       <%= @offer.product.description %> <p><%= @offer.product.category %> : <%= @offer.product.subcategory %></p>
               <p><strong>Address:</strong> <%= @offer.product.address %></p>
       </div>
@@ -197,7 +242,14 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-        User Reviews
+        <strong><%= @offer.product.user.first_name.capitalize %> Rating &nbsp;</strong>
+        <div class="d-flex justify-content-end">
+          <% if @offer.product.user.rated_reviews.blank? %>
+            <p class='text-center'><em> No reviews yet! </em></p>
+          <% else %>
+            <%= '⭐' * @user1_rating %>
+          <% end %>
+        </div>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -214,7 +266,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-        Product Picture
+        <strong> Product Picture</strong>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
