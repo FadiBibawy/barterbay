@@ -7,10 +7,10 @@
               <% end %>
             <%end%>
             <div class="card-body">
-              <p class='text-center'><%= link_to product.title.capitalize , product_path(product), class: 'text-decoration-none' %></p>
-              <div>
-                <p><strong><i class="fa-solid fa-user"></i></strong> <%= link_to product.user.name %></p>
-                <p><strong>Quality:</strong> <%= product.quality.capitalize %></p>
+              <p class='text-center product-title'><%= link_to product.title.capitalize , product_path(product), class: 'text-decoration-none' %></p>
+              <div class="d-flex">
+                <p><small><i class="fa-solid fa-user"></i> <%= link_to product.user.name %></small></p>
+                <p><small><strong>Quality:</strong> <%= product.quality.capitalize %></small></p>
               </div>
             </div> <%# card body %>
 

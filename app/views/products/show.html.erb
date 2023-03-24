@@ -1,14 +1,14 @@
 <%# Code to display the product details and its images in a carousel %>
     <div class="pic-title">
-      <h4><strong><%= @product.title %></strong></h4>
-        <div class="barter-button-container">
-        <p><strong>Offered by:</strong> <%= link_to @product.user.username, @product.user %></p>
+      <h1 class="product-title text-center"><strong><%= @product.title.capitalize %></strong></h1>
+      <div class="barter-button-container">
+        <p><i class="fa-solid fa-user"></i> <%= link_to @product.user.username, @product.user %></p>
         <div class="barter_button">
           <% if @product.user != current_user %>
             <strong><%= link_to "barter", new_product_offer_path(@product), class:"button pulse" %></strong>
           <% end %>
-          </div>
         </div>
+      </div>
     </div>
     <div class="product-up row flex-nowrap">
     <div class="page-left col-4">
@@ -69,18 +69,23 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="panelsStayOpen-headingThree">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              <strong>User Review</strong>
+              <div class="d-flex justify-content-end">
+                <strong>User Rating</strong>
+                <% if @product.user.rated_reviews.blank? %>
+                  <p class='text-center'><em> No reviews yet! </em></p>
+                <% else %>
+                  <%= '⭐' * @user_rating %>
+                <% end %>
+              </div>
+
             </button>
           </h2>
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
             <div class="accordion-body">
               <% if @product.user.rated_reviews.blank? %>
-                <h5 class='text-center'> <strong><%= @product.user.first_name.capitalize %></strong><em> has no reviews! </h5></em>
+                <h5 class='text-center'> <strong><%= link_to @product.user.first_name.capitalize, @product.user %></strong><em> has no reviews! </h5></em>
               <% else %>
-                <p>Overall Rating:</p>
-                <p><%= @user_rating %></p>
-                <hr>
-                <p><strong>Reviews:</strong></p>
+
                 <ul class="list-group">
                   <% @product.user.rated_reviews.each do |review| %>
                     <li class="list-group-item"><%= link_to review.reviewer.username, user_path(review.reviewer) %>: <%= review.content %>
@@ -100,15 +105,19 @@
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
+
       <div class="product-action">
-        <p><%= link_to 'edit this product', edit_product_path if @product.user == current_user %></p>
+
 
         <% if @product.user == current_user %>
+          <p><%= link_to 'Edit Product', edit_product_path, class: 'btn btn-outline-success' %></p>
 
-          <p><%= link_to "Delete this Product",
+          <p><%= link_to "Delete Product",
                   product_path(@product),
-                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+                  class: 'btn btn-outline-warning'
                   %></p>
+
         <% end %>
       </div>
     </div>

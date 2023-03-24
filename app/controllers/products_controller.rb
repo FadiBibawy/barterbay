@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_rating, only: [:show]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   # before_action :product_params, only: [:new]
@@ -78,5 +79,21 @@ class ProductsController < ApplicationController
 
   def filter_category
     @products = @products.filter_category(params[:query])
+  end
+
+
+  def set_rating
+
+    @user_rating = 0
+    if @product.user.rated_reviews.size.zero?
+      @user_rating = 0
+    else
+      @product.user.rated_reviews.each do |review|
+        @user_rating += review.rating
+      end
+
+      @user_rating /= @product.user.rated_reviews.size.to_f
+      @user_rating = (@user_rating * 2.0).round / 2.0
+    end
   end
 end
