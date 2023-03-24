@@ -2,8 +2,8 @@
       <% @products.each do |product| %>
           <div class= "card col-sm-6 col-md-3 col-lg-2 px-0">
             <% if product.photos.first %>
-              <%= link_to product do %>
-                    <%= cl_image_tag product.photos.first.key, class: 'card-img-top product-img' %>
+              <%= link_to product, style:"height:100%" do %>
+                    <%= cl_image_tag product.photos.first.key, class: 'card-img-top product-img', style:"height:100%; max-height: 146px" %>
               <% end %>
             <%end%>
             <div class="card-body d-flex flex-column justify-content-end">
