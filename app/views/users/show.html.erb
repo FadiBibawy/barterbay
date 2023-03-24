@@ -92,7 +92,7 @@
                 class: 'mb-4 white-text btn edit-btn btn-outline-dark btn-sm btn-block'%>
 
 
-            <div class='px-2 py-4'>
+            <div class='p-4' style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; border-radius: 8px;">
               <h4 class='mb-4'><strong>Available Products:</strong></h4>
               <% if @availabe_products.blank? %>
                 <%= @user == current_user ? 'You have' : "#{@user.username} has" %> no available products to barter!
@@ -108,13 +108,13 @@
                               <%= cl_image_tag product.photos.first.key, class: 'card-img-top ' %>
                         <% end %>
                       <%end%>
-                      <div class="text-center card-body">
-                        <p><strong><%= link_to product.title.capitalize , product_path(product), class: "link" %></strong></p>
+                      <div class="text-center card-body p-0">
+                        <p class="product-title"><strong><%= link_to product.title.capitalize , product_path(product), class: "product-title" %></strong></p>
 
                         <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
                           <div style="max-width:100%">
                             <h6><small><i class="fa-solid fa-user"></i></small></h6>
-                            <small><p><%= link_to product.user.name %></p></small>
+                            <p><small><%= link_to product.user.name %></small></p>
                           </div> <%# from %>
                           <div style="max-width:100%">
                             <small>Quality:</small>
@@ -131,57 +131,58 @@
 
             </div>
 
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="mb-0"><strong>Bartered Products:</strong></h5>
-            </div>
-
-            <% if @bartered_products.blank? %>
-              <%= @user == current_user ? 'You have' : "#{@user.name} has" %> no bartered products yet!
-            <% else %>
-
-
-              <div class="row">
-
-                <% @bartered_products.each do |product| %>
-
-
-                  <div class = "mt-4 mx-1 card col-sm-1 col-md-6 col-lg-3" style= "background-color: rgba(#3C9379, 0.1)"
-                      data-product-filter-target="products">
-                    <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
-                    <% if product.photos.first %>
-                      <%= link_to product do %>
-                            <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
-                      <% end %>
-                    <%end%>
-                    <div class="text-center card-body">
-                      <p><strong><%= link_to product.title.capitalize , product_path(product), class: "link" %></strong></p>
-
-                      <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
-                        <div style="max-width:100%">
-                          <h6><small><i class="fa-solid fa-user"></i></small></h6>
-                          <small><p><%= link_to product.user.name %></p></small>
-                        </div> <%# from %>
-                        <div style="max-width:100%">
-                          <small>Quality:</small>
-                          <small><%= product.quality.capitalize %></p></small>
-                        </div> <%# quality %>
-                      </div>
-                      <span class="badge bg-danger rounded-pill">Bartered!</span>
-
-                    </div> <%# card body %>
-                  </div> <%# card div %>
-                <% end %>
+            <div class='p-4' style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; border-radius: 8px;">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <h5 class="mb-0"><strong>Bartered Products:</strong></h5>
               </div>
-            <% end %>
+
+              <% if @bartered_products.blank? %>
+                <%= @user == current_user ? 'You have' : "#{@user.name} has" %> no bartered products yet!
+              <% else %>
 
 
+                <div class="row">
+
+                  <% @bartered_products.each do |product| %>
+
+
+                    <div class = "mt-4 mx-1 card col-sm-1 col-md-6 col-lg-3" style= "background-color: rgba(#3C9379, 0.1)"
+                        data-product-filter-target="products">
+                      <%# <%= cl_image_tag("bartered_logo_big.png", width: 50, height: 50, crop: :fill) %>
+                      <% if product.photos.first %>
+                        <%= link_to product do %>
+                              <%= cl_image_tag product.photos.first.key, class: 'card-img-top' %>
+                        <% end %>
+                      <%end%>
+                      <div class="text-center card-body  p-0">
+                        <p class="product-title"><strong><%= link_to product.title.capitalize , product_path(product), class: "product-title" %></strong></p>
+
+                        <div class="d-flex" style="max-width:100%"> <%# offered by & quality %>
+                          <div style="max-width:100%">
+                            <h6><small><i class="fa-solid fa-user"></i></small></h6>
+                            <small><p><%= link_to product.user.name %></p></small>
+                          </div> <%# from %>
+                          <div style="max-width:100%">
+                            <small>Quality:</small>
+                            <small><%= product.quality.capitalize %></p></small>
+                          </div> <%# quality %>
+                        </div>
+                        <span class="badge bg-danger rounded-pill">Bartered!</span>
+
+                      </div> <%# card body %>
+                    </div> <%# card div %>
+                  <% end %>
+                </div>
+              <% end %>
+
+            </div>
           </div>
 
           <div class="right col-5">
 
             <% if @user == current_user %>
-              <h4><strong>Created offers:</strong></h4>
-              <div class='px-2 py-4'>
+              <div class='px-2 py-4'  style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; border-radius: 8px;">
+                  <h4><strong>Your Offers:</strong></h4>
                   <% @user.offers.each do |offer|%>
 
                       <div class='d-flex align-items-center justify-content-center row'>
@@ -194,8 +195,8 @@
                                   <%= cl_image_tag offer.product.photos.first.key, class: 'card-img-top offer-img' %>
                             <% end %>
                           <%end%>
-                          <div class="text-center card-body">
-                            <p><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "link" %></strong></p>
+                          <div class="text-center card-body  p-0">
+                            <p class="product-title"><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "product-title" %></strong></p>
 
 
                           </div> <%# card body %>
@@ -224,8 +225,8 @@
                                   <%= cl_image_tag offer.offered_product.photos.first.key, class: 'card-img-top  offer-img' %>
                             <% end %>
                           <%end%>
-                          <div class="text-center card-body">
-                            <p><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "link" %></strong></p>
+                          <div class="text-center card-body  p-0">
+                            <p class="product-title"><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "product-title" %></strong></p>
 
 
 
@@ -241,8 +242,8 @@
                   <% end %>
               </div>
 
-              <h4><strong>Received offers:</strong></h4>
-              <div class='px-2 py-4'>
+              <div class='px-2 py-4' style="box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; border-radius: 8px;">
+                    <h4><strong>Received offers:</strong></h4>
 
                     <% @user.received_offers.each do |offer|%>
 
@@ -257,8 +258,8 @@
                                   <%= cl_image_tag offer.product.photos.first.key, class: 'card-img-top offer-img' %>
                             <% end %>
                           <%end%>
-                          <div class="text-center card-body">
-                            <p><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "link" %></strong></p>
+                          <div class="text-center card-body  p-0">
+                            <p class="product-title"><strong><%= link_to offer.product.title.capitalize , product_path(offer.product), class: "product-title" %></strong></p>
 
 
                           </div> <%# card body %>
@@ -287,8 +288,8 @@
                                   <%= cl_image_tag offer.offered_product.photos.first.key, class: 'card-img-top  offer-img' %>
                             <% end %>
                           <%end%>
-                          <div class="text-center card-body">
-                            <p><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "link" %></strong></p>
+                          <div class="text-center card-body p-0">
+                            <p class="product-title"><strong><%= link_to offer.offered_product.title.capitalize , product_path(offer.offered_product), class: "product-title" %></strong></p>
 
 
 
