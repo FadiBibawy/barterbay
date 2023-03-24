@@ -230,14 +230,16 @@
 </div>
 </div>
 </div>
-<div class="offer-accep btspace">
+<div class="offer-accep btspace pt-2">
     <% if @offer.deal == false %>
-      <div class='col-md-4'><%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put, class: 'btn btn-outline-success' %></div>
-      <div class='col-md-4'><%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put, class: 'btn btn-outline-warning' %></div>
+      <div class='d-flex justify-content-center'>
+        <%= button_to 'Accept Offer', accept_offer_path(@offer), method: :put, class: 'btn btn-outline-success' %>
+        <%= button_to 'Refuse Offer', refuse_offer_path(@offer), method: :put, class: 'btn btn-outline-danger' %>
+      </div>
     <% elsif @offer.accepted == true %>
-      <p div class="alert alert-success" role="alert" >You Accepted the Offer!</p>
+      <p class="alert alert-success" role="alert" >You Accepted the Offer!</p>
     <% else %>
-      <p div class="alert alert-danger" role="alert">You Refused the Offer!</p>
+      <p class="alert alert-danger" role="alert">You Refused the Offer!</p>
     <% end %>
   <% end %>
 </div>
