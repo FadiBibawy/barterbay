@@ -49,7 +49,7 @@ puts "Creating Products..."
 20.times do
 
   quality = ["good", "very good", "fair", "not bad"]
-  address = ['Rudi-Dutschke-Straße 26, 10969 Berlin', '16 Vla Gaudelet, 75011 Paris, France', 'C/ del Bruc, 149, 08037 Barcelona, Spain', '380 Bd Brahim Roudani, Casablanca, Morocco']
+  address = ['Rudi-Dutschke-Straße 26, 10969 Berlin', '16 Vla Gaudelet, 75011 Paris, France', 'C/ del Bruc, 149, 08037 Barcelona, Spain']
   category = ['service', 'goods']
   service = ['cleaning', 'repair', 'maintenance']
   goods = ['clothes', 'furniture', 'electronics', 'books']
