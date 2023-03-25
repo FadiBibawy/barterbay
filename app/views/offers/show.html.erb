@@ -6,13 +6,13 @@
     <%# <div class="col-md-6"> %>
     <div class= "new-cl w-40" style= "width:40%">
       <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+            <div class="product-title text-center fs-3">
+              <%= link_to @offer.offered_product.title, @offer.offered_product  %>
+            </div>
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <div class="product-title">
-              <%= @offer.offered_product.title  %>
-            </div>
-
+            <strong>Description</strong>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -75,13 +75,13 @@
 
 <div class= "new-cl w-40" style= "width:40%" >
   <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+        <div class="product-title text-center fs-3">
+          <%= link_to @offer.product.title, @offer.product %>
+        </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <div class="product-title">
-          <%= @offer.product.title %>
-        </div>
-
+        <strong> Description</strong>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -154,12 +154,13 @@
     <%# <div class="col-md-6"> %>
     <div class= "new-cl w-40" style= "width:40%">
       <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+            <div class="product-title text-center fs-3">
+              <%= link_to @offer.offered_product.title, @offer.offered_product  %>
+            </div>
         <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            <div class="product-title">
-              <%= @offer.offered_product.title %>
-            </div>
+            <strong>Description</strong>
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
@@ -219,14 +220,13 @@
                         </div>
 <div class= "new-cl w-40" style= "width:40%" >
   <div class="col-md-6 accordion" id="accordionPanelsStayOpenExample">
+    <div class="product-title text-center fs-3">
+      <%= link_to @offer.offered_product.title, @offer.offered_product  %>
+    </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <div class="product-title">
-          <%= @offer.product.title  %>
-        </div>
-
-
+        <strong>Description</strong>
       </button>
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
