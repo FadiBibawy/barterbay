@@ -57,8 +57,11 @@
   transition: all 0.2s;
   filter: grayscale(50%);
   width: 100%;
+  object-fit: cover;
+  max-height: 100px;
 }
 
 .product-img {
   // height: 50vh;
+  object-fit: cover;
 }

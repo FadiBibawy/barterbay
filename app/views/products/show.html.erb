@@ -15,7 +15,7 @@
       <%# <div class="main-pic" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @product.photos.first.key, height: 500, crop: :fill %>
       <div class="main-pic">
         <%if @product.photos.first %>
-        <%= cl_image_tag  @product.photos.first.key, height: 400, crop: :fill%>
+        <%= cl_image_tag  @product.photos.first.key, height: 400, crop: :fill, style: "object-fit: cover"%>
         <%end%>
       </div>
 
