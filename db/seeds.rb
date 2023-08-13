@@ -27,21 +27,11 @@ puts 'Destroying all Users'
 User.destroy_all
 
 puts "Creating Users..."
-amin = User.create(email: 'amin@amin.com', password: '123456', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
+amin = User.create(email: 'amin@amin.com', username: 'aminTheBest', first_name: 'amin', last_name: 'ahcene')
 amin.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/amin.jfif')),
                   filename: "amin.jfif", content_type: "image/jfif")
 
-alex = User.create(email: 'alex@alex.com', password: '123456', username: 'alexTheBest', first_name: 'alex', last_name: 'wenzel')
-alex.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/alex.jfif')),
-                  filename: "alex.jfif", content_type: "image/jfif")
 
-osama = User.create(email: 'osama@osama.com', password: '123456', username: 'osamaTheKing', first_name: 'osama', last_name: 'shehata')
-osama.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/osama.jfif')),
-                  filename: "osama.jfif", content_type: "image/jfif")
-
-fadi = User.create(email: 'fadi@fadi.com', password: '123456', username: 'fadiBibawy', first_name: 'fadi', last_name: 'bibawy')
-fadi.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/fadi.jfif')),
-                  filename: "fadi.jfif", content_type: "image/jfif")
 
 puts '---------------------------------'
 
